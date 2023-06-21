@@ -15,42 +15,49 @@ class Regex {
 
     applyToString(string) {
         let newString = string + ''
-        let parsedFirstSymbol = this.firstSymbol.replaceAll('\\','')
-        let parsedLastSymbol =  this.lastSymbol.replaceAll('\\','.')
+       
+        let literalLastSymbol = this.lastSymbol.replaceAll('\\*', '*').replaceAll('\\#', '#').replaceAll('\\`', '`')
+
         const match = newString.match(this.exp)
         if (match)
             match.forEach((each, index) => {
-                const content = each.slice(parsedFirstSymbol.length, each.length - parsedLastSymbol.length)
+                let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))[0]
+                let literalLastSymbol = each.match(new RegExp(this.lastSymbol))  [0]
+                console.log(literalFirstSymbol)
+                console.log(literalLastSymbol)
+                console.log('--------------------------------')
+                const content = each.slice(literalFirstSymbol.length, each.length - literalLastSymbol.length)
 
                 const parsedContentStart = `${this.contentStart.replaceAll('$NUMLIST', "<span id='markdown' class='num'>" + (index + 1) + '. </span>')}`
 
-                console.log(each)
+                const mounted = `<${this.parseToTag} ${this.attributes}>${parsedContentStart}${content}${this.contentEnd}</${this.parseToTag}>\n`
                 // console.log(`"${content}"`)
-                newString = newString.replace(each,
-                    `<${this.parseToTag} ${this.attributes}>
-                    ${parsedContentStart}${content}${this.contentEnd}
-                </${this.parseToTag}>\n`)
+                newString = newString.replace(each,mounted)
+
+
+                // console.log(each.padEnd(75,' ').replaceAll('\n','') + '|' + mounted.replaceAll('\n', '').padStart(55,' '))
             })
         return newString
     }
 }
 
 export function parse(string) {
-    const NEWLINE = '\\$NL'
-    let raw = ('' + string +'\n').replaceAll('\n',NEWLINE)
+    const NEWLINE = "RRRRD"
+    let raw = ('' + string + '\n').replaceAll('\n', NEWLINE)
 
     const regexList = [
-        new Regex('### ', NEWLINE, 'h3',                           'id="markdown"'),
-        new Regex('## ',  NEWLINE, 'h2',                           'id="markdown"'),
-        new Regex('# ',   NEWLINE, 'h1',                           'id="markdown"'),
-        new Regex('\\*\\*\\*', '\\*\\*\\*', 'span',                'id="markdown" style="font-style:italic;font-weight:bold"'),
-        new Regex('\\*\\*', '\\*\\*',       'span',                'id="markdown" style="font-weight:bold"'),
-        new Regex('\\*', '\\*',             'span',                'id="markdown" style="font-style:italic"'),
-        new Regex('\\`\\`\\`.*'+NEWLINE, '\\`\\`\\`', 'code',      'id="markdown" style="background:gray;white-space:pre-wrap"'),
-        new Regex('\\`', '\\`',             'div',                 'id="markdown" style="background:gray"'),
-        new Regex('\\d\\.', NEWLINE, 'div',                        'id="markdown"', '$NUMLIST'),
-        new Regex('- ', NEWLINE, 'div',                            'id="markdown"', '• '),
-        new Regex('> ', NEWLINE, 'div',                            'id="markdown" style="background:#222;color:white;border-left:10px black solid"', '')
+        new Regex('\\`\\`\\`.*?'+NEWLINE, '\\`\\`\\`', 'code', 'id="markdown" style="background:gray;white-space:pre-wrap"'),
+        new Regex('### ', NEWLINE, 'h3', 'id="markdown"'),
+        new Regex('## ', NEWLINE, 'h2', 'id="markdown"'),
+        new Regex('# ', NEWLINE, 'h1', 'id="markdown"'),
+        // new Regex('\\*\\*\\*', '\\*\\*\\*', 'span', 'id="markdown" style="font-style:italic;font-weight:bold"'),
+        // new Regex('\\*\\*', '\\*\\*', 'span', 'id="markdown" style="font-weight:bold"'),
+        // new Regex('\\*', '\\*', 'span', 'id="markdown" style="font-style:italic"'),
+      
+        // new Regex('\\`', '\\`', 'div', 'id="markdown" style="background:gray"'),
+        // new Regex('\\d\\.', NEWLINE, 'div', 'id="markdown"', '$NUMLIST'),
+        // new Regex('- ', NEWLINE, 'div', 'id="markdown"', '• '),
+        // new Regex('> ', NEWLINE, 'div', 'id="markdown" style="background:#222;color:white;border-left:10px black solid"', '')
     ]
     console.log(regexList.map(each => {
         return each.exp
