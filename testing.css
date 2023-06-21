@@ -1,11 +1,30 @@
+body{
+    background-color: #111;
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#markdown{
+    
+}
+
 #markdown.list-item{
     color:#111
 }
 #markdown.list-num{
     color: #444;
 }
-
+#markdown.list-dot{
+    color: #444;
+    font-size: 20px;
+}
 #markdown.quote{
     background-color: #ddd;
-    color:
+}
+
+#markdown.code-block{
+    background-color: #111;
+    color:white;
+    font-family: monospace;
+    
 }

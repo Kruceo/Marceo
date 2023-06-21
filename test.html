@@ -1,29 +1,66 @@
-<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>#markdown.list-item{
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>body{
+    background-color: #111;
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#markdown{
+    
+}
+
+#markdown.list-item{
     color:#111
 }
 #markdown.list-num{
     color: #444;
 }
-
+#markdown.list-dot{
+    color: #444;
+    font-size: 20px;
+}
 #markdown.quote{
     background-color: #ddd;
-    color:
+}
+
+#markdown.code-block{
+    background-color: #111;
+    color:white;
+    font-family: monospace;
+    
 }</style>
-<br>Claro! Aqui está um exemplo de texto em Markdown que utiliza várias sintaxes disponíveis:<br><br><h1 id="markdown" class="header1">Título Principal</h1>
-<br><h2 id="markdown" class="header2">Título Secundário</h2>
-<br><h3 id="markdown" class="header3">Título Terciário</h3>
-<br>**Negrito** e _itálico_<br><br>Lista numerada:<br><p id="markdown" class="list-item"><span id="markdown" class="list-num">1.</span> Item 1</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-num">2.</span> Item 2</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-num">3.</span> Item 3</p>
-<br>Lista com marcadores:<br><p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>Marcador 1</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>Marcador 2</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>Marcador 3</p>
-<br>Citação:<br><div id="markdown" class="quote">**"Uma citação famosa."**</div>
-<br>Código inline: `printf("Olá, mundo!");`<br><br>Bloco de código:<br><p id="markdown" class="list-item"><span id="markdown" class="list-num">1.</span> Item 1</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-num">2.</span> Item 2</p>
-<p id="markdown" class="list-item"><span id="markdown" class="list-num">3.</span> Item 3</p>
-```python<br>def soma(a, b):<br>    return a + b<br>```<br><br>Tabelas:<br><br>| Coluna 1 | Coluna 2 | Coluna 3 @TABLEPIPE@ <div id="markdown" style="background:#0004;width:100%;height:7px" class="line"/>
-<br>Links: [Texto do link](https://www.example.com)<br><br>Imagem:<br>![Descrição da imagem](https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png)<br><br>Linha horizontal:<br><br><div id="markdown" style="background:#0004;width:100%;height:7px" class="line"/>
-<br>Isso é apenas um exemplo básico de algumas sintaxes disponíveis no Markdown. Você pode explorar mais recursos e sintaxes em guias e documentações específicas do Markdown.<br><br>| Coluna 1 | Coluna 2 | Coluna 3 @TABLEPIPE@ <div id="markdown" style="background:#0004;width:100%;height:7px" class="line"/>
-<br>
+<h1 id="markdown" class="header1"><span id="markdown" style="font-weight:bold" class="bold">ChatRGB</span>
+
+ </h1>
+
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Intro</span>
+
+</h2>
+
+<br>ChatRGB is a Discord bot designed to be funny, but it now supports roleplays and maintains context. With a command system and chat history, ChatRGB provides an engaging and humorous experience for users.<br><br><br><br><br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Install</span>
+
+</h2>
+
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">
+    git clone https://github&#8228;com/Kruceo/ChatRGB&#8228;git bot<br>cd bot<br>npm i<br>node index&#8228;mjs<br>
+</div>
+
+<br><br>This will generate a "data/memory" folders, this paths will contain the configuration of the bot.<br><div style="white-space:pre-wrap;" id="markdown" class="code-block">
+    /&ast; &#8228;/data/memory/config&#8228;conf &ast;/<br>discord<span id="markdown" style="font-style:italic" class="italic">key=xxx-xxx-xxx    //your discord key<br>model=text-davinci-003     //Open AI model<br>maxtokens=128              //max tokens to be burned at request  <br>temperature=0&#8228;5            //like creativity<br>enable</span>
+
+context=true        //enable context history, maybe cost more tokens per message<br>context<span id="markdown" style="font-style:italic" class="italic">length=5           //the number of old messages that the bot will remember<br>context</span>
+
+timeout=120000     //the time in millis to the bot forget history <br>
+</div>
+
+<br><br>You don't need restart the process to update the config, just change the file.<br><br><br><br><br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Extra</span>
+
+ ##</h2>
+
+if you want to change the config files path, just run the script like this:<br><div style="white-space:pre-wrap;" id="markdown" class="code-block">
+    node index&#8228;mjs -cp /new/path/to/config<br>
+</div>
+
+<br><br>this will generate the config files at this new folder.<br><br><br><br><br><br><h2 id="markdown" class="header2">Author ##</h2>
+
+take a look at <a href="https://kruceo.com">kruceo.com</a><br>
 </body>
