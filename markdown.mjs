@@ -1,12 +1,16 @@
 import fs from 'fs'
+import { numListElement } from './src/types/numlist.mjs'
+import { header3Element } from './src/types/header3.mjs'
+import { header2Element } from './src/types/header2.mjs'
+import { header1Element } from './src/types/header1.mjs'
+import { lineElement } from './src/types/line.mjs'
+import { dotListElement } from './src/types/dotlist.mjs'
+import { quoteElement } from './src/types/quote.mjs'
 class Regex {
-    constructor(firstSymbol, lastSymbol, parseToTag, attributes, contentStart, contentEnd) {
+    constructor(firstSymbol, lastSymbol,callback) {
         this.firstSymbol = firstSymbol
         this.lastSymbol = lastSymbol
-        this.parseToTag = parseToTag
-        this.attributes = attributes
-        this.contentStart = contentStart ?? ''
-        this.contentEnd = contentEnd ?? ''
+        this.callback = callback
     }
 
     get exp() {
@@ -15,25 +19,20 @@ class Regex {
 
     applyToString(string) {
         let newString = string + ''
-       
-        let literalLastSymbol = this.lastSymbol.replaceAll('\\*', '*').replaceAll('\\#', '#').replaceAll('\\`', '`')
 
         const match = newString.match(this.exp)
         if (match)
             match.forEach((each, index) => {
-                let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))[0]
-                let literalLastSymbol = each.match(new RegExp(this.lastSymbol))  [0]
-                console.log(literalFirstSymbol)
-                console.log(literalLastSymbol)
+                let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))
+                let literalLastSymbol = each.match(new RegExp(this.lastSymbol))
+                const content = each.slice(literalFirstSymbol[0].length, each.length - literalLastSymbol[0].length)
+                
+                console.log('first   |',literalFirstSymbol[0])
+                console.log('last    |',literalLastSymbol[0])
+                console.log('content |',content)
                 console.log('--------------------------------')
-                const content = each.slice(literalFirstSymbol.length, each.length - literalLastSymbol.length)
-
-                const parsedContentStart = `${this.contentStart.replaceAll('$NUMLIST', "<span id='markdown' class='num'>" + (index + 1) + '. </span>')}`
-
-                const mounted = `<${this.parseToTag} ${this.attributes}>${parsedContentStart}${content}${this.contentEnd}</${this.parseToTag}>\n`
-                // console.log(`"${content}"`)
-                newString = newString.replace(each,mounted)
-
+                const result = this.callback(literalFirstSymbol,literalLastSymbol,content) +'\n'
+                newString = newString.replace(each,result)
 
                 // console.log(each.padEnd(75,' ').replaceAll('\n','') + '|' + mounted.replaceAll('\n', '').padStart(55,' '))
             })
@@ -42,31 +41,41 @@ class Regex {
 }
 
 export function parse(string) {
-    const NEWLINE = "RRRRD"
-    let raw = ('' + string + '\n').replaceAll('\n', NEWLINE)
-
+    const NEWLINE = "@NEWLINE@"
+    const TABLEPIPE = "@TABLEPIPE@"
+    let raw = ('' + string + '\n')
+    .replaceAll('|\n|',TABLEPIPE)
+    .replaceAll('\n', NEWLINE)
+    /**
+     * All that uses NEWLINE like termination, runs first in the array,columns runs first than all
+     */
     const regexList = [
-        new Regex('\\`\\`\\`.*?'+NEWLINE, '\\`\\`\\`', 'code', 'id="markdown" style="background:gray;white-space:pre-wrap"'),
-        new Regex('### ', NEWLINE, 'h3', 'id="markdown"'),
-        new Regex('## ', NEWLINE, 'h2', 'id="markdown"'),
-        new Regex('# ', NEWLINE, 'h1', 'id="markdown"'),
-        // new Regex('\\*\\*\\*', '\\*\\*\\*', 'span', 'id="markdown" style="font-style:italic;font-weight:bold"'),
-        // new Regex('\\*\\*', '\\*\\*', 'span', 'id="markdown" style="font-weight:bold"'),
-        // new Regex('\\*', '\\*', 'span', 'id="markdown" style="font-style:italic"'),
+        new Regex('### ', NEWLINE                     ,header3Element), 
+        new Regex('## ', NEWLINE                      ,header2Element), 
+        new Regex('# ', NEWLINE                       ,header1Element),
+        new Regex('---', NEWLINE                      ,lineElement),
+        new Regex('\\d\\.', NEWLINE                   ,numListElement),  
+        new Regex('- ', NEWLINE                       ,dotListElement), 
+        // new Regex('\\`\\`\\`.*?'+NEWLINE, '\\`\\`\\`' ,''), 
+        new Regex('> ', NEWLINE                       ,quoteElement), 
       
-        // new Regex('\\`', '\\`', 'div', 'id="markdown" style="background:gray"'),
-        // new Regex('\\d\\.', NEWLINE, 'div', 'id="markdown"', '$NUMLIST'),
-        // new Regex('- ', NEWLINE, 'div', 'id="markdown"', '• '),
-        // new Regex('> ', NEWLINE, 'div', 'id="markdown" style="background:#222;color:white;border-left:10px black solid"', '')
+        // new Regex('\\*\\*\\*', '\\*\\*\\*'            ,''),
+        // new Regex('\\*\\*', '\\*\\*'                  ,''),
+        // new Regex('\\*', '\\*'                        ,''),
+        // new Regex('\\`', '\\`'                        ,''),
+        // new Regex('_', '_'                            ,''),
+        
+        
+        // `\\|${NEWLINE}`
+        
+        
+        // ,'div', 'id="markdown" style="background:red"'),
     ]
-    console.log(regexList.map(each => {
-        return each.exp
-    }))
+
     regexList.forEach((each, index) => {
         raw = each.applyToString(raw)
     })
-
-    return raw.replaceAll(NEWLINE,'\n')
+    return raw.replaceAll(NEWLINE,'<br>')
 
 }
 

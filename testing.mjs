@@ -23,12 +23,14 @@ Lista com marcadores:
 - Marcador 3
 
 Citação:
-> "Uma citação famosa."
+> **"Uma citação famosa."**
 
 Código inline: \`printf("Olá, mundo!");\`
 
 Bloco de código:
-
+1. Item 1
+2. Item 2
+3. Item 3
 \`\`\`python
 def soma(a, b):
     return a + b
@@ -51,6 +53,11 @@ Linha horizontal:
 ---
 
 Isso é apenas um exemplo básico de algumas sintaxes disponíveis no Markdown. Você pode explorar mais recursos e sintaxes em guias e documentações específicas do Markdown.
+
+| Coluna 1 | Coluna 2 | Coluna 3 |
+| -------- | -------- | -------- |
+| Valor 1  | Valor 2  | Valor 3  |
+| Valor 4  | Valor 5  | Valor 6  |
 `)
 
-fs.writeFileSync('./test.html','<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>*{font-family:sans-serif}</style>\n'+raw +'\n</body>','utf-8')
+fs.writeFileSync('./test.html','<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>'+fs.readFileSync('testing.css','utf-8')+'</style>\n'+raw +'\n</body>','utf-8')
