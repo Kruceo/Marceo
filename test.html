@@ -1,11 +1,119 @@
-<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>body{
-    background-color: #111;
-    color:white;
+<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Page Title</title><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><style>@font-face {
+    font-display: swap;
+    font-family: Signifier;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/signifier/signifier-light.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Signifier;
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/signifier/signifier-light-italic.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Signifier;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://cdn.openai.com/common/fonts/signifier/signifier-bold.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Signifier;
+    font-style: italic;
+    font-weight: 700;
+    src: url(https://cdn.openai.com/common/fonts/signifier/signifier-bold-italic.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-buch.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-buch-kursiv.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: normal;
+    font-weight: 500;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-kraftig.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: italic;
+    font-weight: 500;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-kraftig-kursiv.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-halbfett.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne;
+    font-style: italic;
+    font-weight: 600;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-halbfett-kursiv.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne Mono;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne Mono;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-halbfett.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Söhne Mono;
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
+}
+
+body{
+    margin: 0 auto;
+    width: 800px;
+    background-color: rgb(68,70,84);
+    color:#d1d3dc;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
 #markdown{
-    
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #markdown.list-item{
@@ -23,44 +131,48 @@
 }
 
 #markdown.code-block{
-    background-color: #111;
-    color:white;
+    background-color: #000;
+    color:#d1d3dc;
     font-family: monospace;
-    
+
+    border-radius: 7px;
+    padding: 7px;
+    overflow-x: auto;
 }</style>
-<h1 id="markdown" class="header1"><span id="markdown" style="font-weight:bold" class="bold">ChatRGB</span>
+<h1 id="markdown" class="header1"><span id="markdown" style="font-weight:bold" class="bold">ChatRGB</span> </h1><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Intro</span></h2>
+ChatRGB is a Discord bot designed to be funny, but it now supports roleplays and maintains context. With a command system and chat history, ChatRGB provides an engaging and humorous experience for users.
 
- </h1>
-
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Intro</span>
-
-</h2>
-
-<br>ChatRGB is a Discord bot designed to be funny, but it now supports roleplays and maintains context. With a command system and chat history, ChatRGB provides an engaging and humorous experience for users.<br><br><br><br><br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Install</span>
-
-</h2>
-
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">
-    git clone https://github&#8228;com/Kruceo/ChatRGB&#8228;git bot<br>cd bot<br>npm i<br>node index&#8228;mjs<br>
+<br>
+<br>
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Install</span></h2><div style="white-space:pre-wrap;" id="markdown" class="code-block">git clone https://github&#8228;com/Kruceo/ChatRGB&#8228;git bot
+cd bot
+npm i
+node index&#8228;mjs
 </div>
 
-<br><br>This will generate a "data/memory" folders, this paths will contain the configuration of the bot.<br><div style="white-space:pre-wrap;" id="markdown" class="code-block">
-    /&ast; &#8228;/data/memory/config&#8228;conf &ast;/<br>discord<span id="markdown" style="font-style:italic" class="italic">key=xxx-xxx-xxx    //your discord key<br>model=text-davinci-003     //Open AI model<br>maxtokens=128              //max tokens to be burned at request  <br>temperature=0&#8228;5            //like creativity<br>enable</span>
-
-context=true        //enable context history, maybe cost more tokens per message<br>context<span id="markdown" style="font-style:italic" class="italic">length=5           //the number of old messages that the bot will remember<br>context</span>
-
-timeout=120000     //the time in millis to the bot forget history <br>
+This will generate a "data/memory" folders, this paths will contain the configuration of the bot.
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">/&ast; &#8228;/data/memory/config&#8228;conf &ast;/
+discord<span id="markdown" style="font-style:italic" class="italic">key=xxx-xxx-xxx    //your discord key
+model=text-davinci-003     //Open AI model
+maxtokens=128              //max tokens to be burned at request  
+temperature=0&#8228;5            //like creativity
+enable</span>context=true        //enable context history, maybe cost more tokens per message
+context<span id="markdown" style="font-style:italic" class="italic">length=5           //the number of old messages that the bot will remember
+context</span>timeout=120000     //the time in millis to the bot forget history 
 </div>
 
-<br><br>You don't need restart the process to update the config, just change the file.<br><br><br><br><br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Extra</span>
+You don't need restart the process to update the config, just change the file.
 
- ##</h2>
-
-if you want to change the config files path, just run the script like this:<br><div style="white-space:pre-wrap;" id="markdown" class="code-block">
-    node index&#8228;mjs -cp /new/path/to/config<br>
+<br>
+<br>
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Extra</span></h2>if you want to change the config files path, just run the script like this:
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">node index&#8228;mjs -cp /new/path/to/config
 </div>
 
-<br><br>this will generate the config files at this new folder.<br><br><br><br><br><br><h2 id="markdown" class="header2">Author ##</h2>
+this will generate the config files at this new folder.
 
-take a look at <a href="https://kruceo.com">kruceo.com</a><br>
+<br>
+<br>
+<h2 id="markdown" class="header2">Author</h2>take a look at <a href="https://kruceo.com">kruceo.com</a>
+
 </body>

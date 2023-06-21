@@ -30,15 +30,17 @@ class Regex {
             match.forEach((each, index) => {
                 let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))
                 let literalLastSymbol = each.match(new RegExp(this.lastSymbol))
-                const content = each.slice(literalFirstSymbol[0].length, each.length - literalLastSymbol[0].length)
-                
+                let content = each.slice(literalFirstSymbol[0].length, each.length - literalLastSymbol[0].length)
+               
                 console.log('first   |',literalFirstSymbol[0])
                 console.log('last    |',literalLastSymbol[0])
+                console.log('old     |',each)
                 console.log('content |',content)
                 console.log('--------------------------------')
-                const result = this.callback(literalFirstSymbol,literalLastSymbol,content) +'\n\n'
-                newString = newString.replace(each,result)
 
+                const result = this.callback(literalFirstSymbol,literalLastSymbol,content)
+                
+                newString = newString.replace(each,result)
                 // console.log(each.padEnd(75,' ').replaceAll('\n','') + '|' + mounted.replaceAll('\n', '').padStart(55,' '))
             })
         return newString
@@ -61,9 +63,9 @@ export function parse(string) {
         
         new Regex(NEWLINE+'\\`\\`\\`.*?'+NEWLINE, '\\`\\`\\`' ,codeBlockElement), 
         new Regex('\\`', '\\`'                        ,inlineCodeElement),
-        new Regex(NEWLINE+'### ', NEWLINE                     ,header3Element), 
-        new Regex(NEWLINE+'## ', NEWLINE                      ,header2Element), 
-        new Regex(NEWLINE+'# ', NEWLINE                       ,header1Element),
+        new Regex(NEWLINE+'### ',     `(###${NEWLINE}|${NEWLINE})`                     ,header3Element), 
+        new Regex(NEWLINE+'## ',      `(##${NEWLINE}|${NEWLINE})`                      ,header2Element), 
+        new Regex(NEWLINE+'# ',       `(#${NEWLINE}|${NEWLINE})`                       ,header1Element),
         new Regex(NEWLINE+'---', NEWLINE                      ,lineElement),
         new Regex(NEWLINE+'\\d\\.', NEWLINE                   ,numListElement),  
         new Regex(NEWLINE+'- ', NEWLINE                       ,dotListElement), 
@@ -83,6 +85,6 @@ export function parse(string) {
     regexList.forEach((each, index) => {
         raw = each.applyToString(raw)
     })
-    return raw.replaceAll(NEWLINE,'<br>')
+    return raw.replaceAll(NEWLINE,'\n')
 
 }
