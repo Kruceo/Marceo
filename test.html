@@ -105,10 +105,6 @@
 body{
     margin: 0 auto;
     width: 800px;
-    background-color: rgb(68,70,84);
-    color:#d1d3dc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
 #markdown{
@@ -117,13 +113,13 @@ body{
 }
 
 #markdown.list-item{
-    color:#111
+    color:#d1d3dc
 }
 #markdown.list-num{
-    color: #444;
+    color: #d1d3dc88;
 }
 #markdown.list-dot{
-    color: #444;
+    color: #d1d3dc88;
     font-size: 20px;
 }
 #markdown.quote{
@@ -138,41 +134,134 @@ body{
     border-radius: 7px;
     padding: 7px;
     overflow-x: auto;
+}
+#markdown.anchor{
+    color:#fff;
+    font-weight: bold;
+}
+
+#markdown a{
+    color:#fff;
+    font-weight: bold;
+}
+
+#markdown img{
+    padding: 10px;
+}
+
+#markdown.background{
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(68,70,84);
+    color:#d1d3dc;
+    font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }</style>
-<h1 id="markdown" class="header1"><span id="markdown" style="font-weight:bold" class="bold">ChatRGB</span> </h1><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Intro</span></h2>
-ChatRGB is a Discord bot designed to be funny, but it now supports roleplays and maintains context. With a command system and chat history, ChatRGB provides an engaging and humorous experience for users.
+<div id="markdown" class="background"><h1 id="markdown" class="header1">Yotum</h1>
+<br>
+<div align='center'>
 
+<img src="https://github.com/Kruceo/yotum/blob/main/icon.png?raw=true" width=128px>
+<br>
+
+<a href="https://yotum.kruceo.com">📚 <strong>Example</strong></a> ╽
+<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
+<a href="https://home.kruceo.com/donation">🎁 <strong>Donation</strong></a>
+</div>
 <br>
 <br>
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Install</span></h2><div style="white-space:pre-wrap;" id="markdown" class="code-block">git clone https://github&#8228;com/Kruceo/ChatRGB&#8228;git bot
-cd bot
-npm i
-node index&#8228;mjs
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Introduction</span></h2>
+Yotum was created for generate automatic color palletes with js.
+<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Technologies</span></h2>
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>Javascript</p>
+<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Installation</span></h2><div style="white-space:pre-wrap;" id="markdown" class="code-block">npm install -g kruceo/yotum 
+</div>
+<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Getting started</span></h2><h3 id="markdown" class="header3">Creating color</h3><div style="white-space:pre-wrap;" id="markdown" class="code-block">import Color from 'yotum'
+
+const red = new Color('#f00')
+const green = new Color('#0f08') // with alpha
+const blue = new Color([0,0,255]) // with RGB
+
+console&#8228;log(red&#8228;rgb)
+console&#8228;log(green&#8228;rgba)
+console&#8228;log(blue&#8228;hex) 
+</div>
+output:<div style="white-space:pre-wrap;" id="markdown" class="code-block">[255,0,0]
+[0,255,0,0&#8228;5]
+#0000ff 
+</div>
+<br><br>
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Color Class</span></h2><h3 id="markdown" class="header3">Input</h3>The constructor accepts hex and rgb, both with alpha support.
+<h3 id="markdown" class="header3">Internal color systems</h3><span id="markdown" style="font-style:italic" class="italic"> RGB
+</span> Hex
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>HSB</p><div style="white-space:pre-wrap;" id="markdown" class="code-block">const color = new Color('f00f')
+
+console&#8228;log(color&#8228;rgb) // return [255,0,0]
+console&#8228;log(color&#8228;rgba) // return [255,0,0,1]
+
+console&#8228;log(color&#8228;hex) //return "ff0000"
+console&#8228;log(color&#8228;hexAlpha) //return "ff0000f"
+
+console&#8228;log(color&#8228;hsb)  //return { hue:0, brightness:100, saturation:100 }
+console&#8228;log(color&#8228;hsba)  //return { hue:0, brightness:100, saturation:100, alpha:100 } 
 </div>
 
-This will generate a "data/memory" folders, this paths will contain the configuration of the bot.
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">/&ast; &#8228;/data/memory/config&#8228;conf &ast;/
-discord<span id="markdown" style="font-style:italic" class="italic">key=xxx-xxx-xxx    //your discord key
-model=text-davinci-003     //Open AI model
-maxtokens=128              //max tokens to be burned at request  
-temperature=0&#8228;5            //like creativity
-enable</span>context=true        //enable context history, maybe cost more tokens per message
-context<span id="markdown" style="font-style:italic" class="italic">length=5           //the number of old messages that the bot will remember
-context</span>timeout=120000     //the time in millis to the bot forget history 
+<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Mixing</span></h2><h3 id="markdown" class="header3">Brightness</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const darker = brightness(color,50) //Color with 50% of original bright 
 </div>
 
-You don't need restart the process to update the config, just change the file.
-
-<br>
-<br>
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Extra</span></h2>if you want to change the config files path, just run the script like this:
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">node index&#8228;mjs -cp /new/path/to/config
+<h3 id="markdown" class="header3">Saturation</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const saturated = saturation(color,50) //Color with 50% of original saturation 
+</div>
+<h3 id="markdown" class="header3">Hue rotation</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const newColor = hue(color,130) //Color with 130° addition to hue rotation 
 </div>
 
-this will generate the config files at this new folder.
+<h3 id="markdown" class="header3">Geometric hue rotation <span id="markdown" style="font-style:italic" class="italic"><span id="markdown" style="font-weight:bold" class="bold">(Experiment)</span></span></h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#f00')
+  const newColor = geometricHue(color,90) //the rotation added is sync with color wheel&#8228; 
+</div>
+<h3 id="markdown" class="header3">Invert</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const inverted = invert(color) //Inverse color of the original 
+</div>
+<br><br>
+<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Palletes</span></h2><h3 id="markdown" class="header3">Additive</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = additive(color,25,5) // => [Color x 5] 
+</div>
+<h3 id="markdown" class="header3">Difference Between</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color1 = new Color('#ff8252')
+  const color2 = new Color('#0022ff')
+  const pallete = diffBetween(color1,color2,10) // => [Color x 10] 
+</div>
+<h3 id="markdown" class="header3">Square</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = square(color,8,25) // => [Color x 8] 
+</div>
+<h3 id="markdown" class="header3">Triad</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = triad(color,4,25) // => [Color x 4] 
+</div>
+<h3 id="markdown" class="header3">Analog</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = analog(color,30,8) // => [Color x 8] 
+</div>
+<h3 id="markdown" class="header3">Division</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = division(color) // => [Color x 5] 
+</div>
+<h3 id="markdown" class="header3">Double division</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = doubleDivision(color) // => [Color x 5] 
+</div>
+<h3 id="markdown" class="header3">Shades</h3>
+<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
+  const pallete = shades(color1,10,8) // => [Color x 8] 
+</div>
 
-<br>
-<br>
-<h2 id="markdown" class="header2">Author</h2>take a look at <a href="https://kruceo.com">kruceo.com</a>
-
-</body>
+<br><br><h2 id="markdown" class="header2">Author</h2>Visit Kruceo website for more projects: <a href='https://home.kruceo.com'>home.kruceo.com
+</div>
+ <a href="kruceo.com">rasdadasddasdas</a></body>

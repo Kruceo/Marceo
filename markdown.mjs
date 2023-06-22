@@ -11,6 +11,8 @@ import { boldElement } from './src/types/bold.mjs'
 import { italicElement } from './src/types/italic.mjs'
 import { italicBoldElement } from './src/types/italicBold.mjs'
 import { inlineCodeElement } from './src/types/inlineCode.mjs'
+import { imageElement } from './src/types/image.mjs'
+import { anchorElement } from './src/types/anchor.mjs'
 class Regex {
     constructor(firstSymbol, lastSymbol,callback) {
         this.firstSymbol = firstSymbol
@@ -69,22 +71,22 @@ export function parse(string) {
         new Regex(NEWLINE+'---', NEWLINE                      ,lineElement),
         new Regex(NEWLINE+'\\d\\.', NEWLINE                   ,numListElement),  
         new Regex(NEWLINE+'- ', NEWLINE                       ,dotListElement), 
+      
         new Regex('\\*\\*\\*', '\\*\\*\\*'            ,italicBoldElement),
         new Regex('\\*\\*', '\\*\\*'                  ,boldElement),
         new Regex('\\*', '\\*'                        ,italicElement),
         new Regex('_', '_'                            ,italicElement),
         new Regex(NEWLINE+'(\\&gt;|>)',  NEWLINE               ,quoteElement),
-        
 
-        // `\\|${NEWLINE}`
-        
-        
-        // ,'div', 'id="markdown" style="background:red"'),
+        new Regex('\\!\\[.*?\\]\\(',  "\\)"+NEWLINE               ,imageElement),
+        new Regex('\\[.*?\\]\\(',  "\\)"+NEWLINE               ,anchorElement),
+
+        new Regex('\\* ', NEWLINE                       ,dotListElement),
     ]
 
     regexList.forEach((each, index) => {
         raw = each.applyToString(raw)
     })
-    return raw.replaceAll(NEWLINE,'\n')
+    return "<div id=\"markdown\" class=\"background\">"+ raw.replaceAll(NEWLINE,'\n') + "</div>"
 
 }
