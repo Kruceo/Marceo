@@ -102,16 +102,6 @@
     src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
 }
 
-body{
-    margin: 0 auto;
-    width: 800px;
-}
-
-#markdown{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 #markdown.list-item{
     color:#d1d3dc
 }
@@ -146,7 +136,9 @@ body{
 }
 
 #markdown img{
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 100%;
 }
 
 #markdown.background{

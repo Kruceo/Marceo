@@ -102,16 +102,6 @@
     src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
 }
 
-body{
-    margin: 0 auto;
-    width: 800px;
-}
-
-#markdown{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 #markdown.list-item{
     color:#d1d3dc
 }
@@ -146,7 +136,9 @@ body{
 }
 
 #markdown img{
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 100%;
 }
 
 #markdown.background{
@@ -156,112 +148,293 @@ body{
     color:#d1d3dc;
     font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }</style>
-<div id="markdown" class="background"><h1 id="markdown" class="header1">Yotum</h1>
+<div id="markdown" class="background">
+
+
+ 
+
+
+<p align="center">
+
+
+ 
+
+
+<a href="https://linuxgsm.com"><img src="https://i.imgur.com/Eoh1jsi.jpg" alt="LinuxGSM">
+
+
+ 
+
+
 <br>
-<div align='center'>
 
-<img src="https://github.com/Kruceo/yotum/blob/main/icon.png?raw=true" width=128px>
-<br>
 
-<a href="https://yotum.kruceo.com">📚 <strong>Example</strong></a> ╽
-<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
-<a href="https://home.kruceo.com/donation">🎁 <strong>Donation</strong></a>
-</div>
-<br>
-<br>
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Introduction</span></h2>
-Yotum was created for generate automatic color palletes with js.
-<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Technologies</span></h2>
-<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>Javascript</p>
-<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Installation</span></h2><div style="white-space:pre-wrap;" id="markdown" class="code-block">npm install -g kruceo/yotum 
-</div>
-<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Getting started</span></h2><h3 id="markdown" class="header3">Creating color</h3><div style="white-space:pre-wrap;" id="markdown" class="code-block">import Color from 'yotum'
+ 
 
-const red = new Color('#f00')
-const green = new Color('#0f08') // with alpha
-const blue = new Color([0,0,255]) // with RGB
 
-console&#8228;log(red&#8228;rgb)
-console&#8228;log(green&#8228;rgba)
-console&#8228;log(blue&#8228;hex) 
-</div>
-output:<div style="white-space:pre-wrap;" id="markdown" class="code-block">[255,0,0]
-[0,255,0,0&#8228;5]
-#0000ff 
-</div>
-<br><br>
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Color Class</span></h2><h3 id="markdown" class="header3">Input</h3>The constructor accepts hex and rgb, both with alpha support.
-<h3 id="markdown" class="header3">Internal color systems</h3><span id="markdown" style="font-style:italic" class="italic"> RGB
-</span> Hex
-<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>HSB</p><div style="white-space:pre-wrap;" id="markdown" class="code-block">const color = new Color('f00f')
+<a href="https://www.codacy.com/gh/GameServerManagers/LinuxGSM/dashboard"><img src="https://img.shields.io/codacy/grade/d19c5234dc3743d8a8a14093711ca52d?style=flat-square&logo=codacy&logoColor=white" alt="Codacy grade"></a>
 
-console&#8228;log(color&#8228;rgb) // return [255,0,0]
-console&#8228;log(color&#8228;rgba) // return [255,0,0,1]
 
-console&#8228;log(color&#8228;hex) //return "ff0000"
-console&#8228;log(color&#8228;hexAlpha) //return "ff0000f"
+ 
 
-console&#8228;log(color&#8228;hsb)  //return { hue:0, brightness:100, saturation:100 }
-console&#8228;log(color&#8228;hsba)  //return { hue:0, brightness:100, saturation:100, alpha:100 } 
-</div>
 
-<br><br><h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Mixing</span></h2><h3 id="markdown" class="header3">Brightness</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const darker = brightness(color,50) //Color with 50% of original bright 
-</div>
+<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/GameServerManagers/LinuxGSM/git-sync.yml?color=0052CC&logo=bitbucket&style=flat-square">
 
-<h3 id="markdown" class="header3">Saturation</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const saturated = saturation(color,50) //Color with 50% of original saturation 
-</div>
-<h3 id="markdown" class="header3">Hue rotation</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const newColor = hue(color,130) //Color with 130° addition to hue rotation 
-</div>
 
-<h3 id="markdown" class="header3">Geometric hue rotation <span id="markdown" style="font-style:italic" class="italic"><span id="markdown" style="font-weight:bold" class="bold">(Experiment)</span></span></h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#f00')
-  const newColor = geometricHue(color,90) //the rotation added is sync with color wheel&#8228; 
-</div>
-<h3 id="markdown" class="header3">Invert</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const inverted = invert(color) //Inverse color of the original 
-</div>
-<br><br>
-<h2 id="markdown" class="header2"><span id="markdown" style="font-weight:bold" class="bold">Palletes</span></h2><h3 id="markdown" class="header3">Additive</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = additive(color,25,5) // => [Color x 5] 
-</div>
-<h3 id="markdown" class="header3">Difference Between</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color1 = new Color('#ff8252')
-  const color2 = new Color('#0022ff')
-  const pallete = diffBetween(color1,color2,10) // => [Color x 10] 
-</div>
-<h3 id="markdown" class="header3">Square</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = square(color,8,25) // => [Color x 8] 
-</div>
-<h3 id="markdown" class="header3">Triad</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = triad(color,4,25) // => [Color x 4] 
-</div>
-<h3 id="markdown" class="header3">Analog</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = analog(color,30,8) // => [Color x 8] 
-</div>
-<h3 id="markdown" class="header3">Division</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = division(color) // => [Color x 5] 
-</div>
-<h3 id="markdown" class="header3">Double division</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = doubleDivision(color) // => [Color x 5] 
-</div>
-<h3 id="markdown" class="header3">Shades</h3>
-<div style="white-space:pre-wrap;" id="markdown" class="code-block">  const color = new Color('#ff8252')
-  const pallete = shades(color1,10,8) // => [Color x 8] 
-</div>
+ 
 
-<br><br><h2 id="markdown" class="header2">Author</h2>Visit Kruceo website for more projects: <a href='https://home.kruceo.com'>home.kruceo.com
+
+<a href="https://linuxgsm.com/discord"><img alt="Discord" src="https://img.shields.io/discord/127498813903601664?color=5865F2&label=%20&logo=discord&logoColor=ffffff&style=flat-square"></a>
+
+
+ 
+
+
+<a href="https://developer.valvesoftware.com/wiki/SteamCMD"><img src="https://img.shields.io/badge/SteamCMD-000000?style=flat-square&amp;logo=Steam&amp;logoColor=white" alt="SteamCMD"></a>
+
+
+ 
+
+
+<a href="https://github.com/GameServerManagers/LinuxGSM/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gameservermanagers/LinuxGSM?style=flat-square" alt="MIT License"></a>
+
+
+ 
+
+
+</p>
+
+
+ 
+
+
+
+
+
+ 
+
+
+[LinuxGSM](https://linuxgsm.com) is the command-line tool for quick, simple deployment and management of Linux dedicated game servers.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">Hassle-Free Dedicated Game Servers</h2> 
+
+
+
+
+
+ 
+
+
+Traditionally game servers are not easy to manage yourself. Admins often have to spend hours messing around trying to get their server working. LinuxGSM is a command-line tool designed to be as simple as possible, allowing admins to spend less time on management and more time gaming.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">Main features</h2> 
+
+
+
+
+
+ <p id="markdown" class="list-item"><span id="markdown" class="list-num">
+
+
+1</span>00+ game servers supported</p> 
+
+
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Installer</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Monitor</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Alerts</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Updater</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Server Details</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Backup</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   🔸 Console</p>
+
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">🔸 Compatibility</h2> 
+
+
+
+
+
+ 
+
+
+LinuxGSM will run on popular distros as long as the minimum requirements are met.
+
+
+ 
+
+
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   Ubuntu</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   Debian</p>
+
+
+
+ 
+<p id="markdown" class="list-item"><span id="markdown" class="list-dot">• </span>   CentOS</p>
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+Other distros are likely to work but are not fully tested.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">🔸 Requirements</h2> 
+
+
+
+
+
+ 
+
+
+Each game server has specific dependency requirements. Visit a specific game server installation page on the [LinuxGSM](https://linuxgsm.com) website to check dependency requirements for the game server you want to install.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">🔸 Documentation</h2> 
+
+
+
+
+
+ 
+
+
+Documentation is found at [linuxgsm.com](https://linuxgsm.com) and [docs.linuxgsm.com](https://docs.linuxgsm.com).
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">🔸 Support</h2> 
+
+
+
+
+
+ 
+
+
+There are various ways to get support, check out the [support](https://linuxgsm.com/support/) page to the right support.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">🔸 Sponsor</h2> 
+
+
+
+
+
+ 
+
+
+If you would like to [sponsor](https://linuxgsm.com/sponsor) to the project there are several ways you can, via [GitHub Sponsors](https://github.com/sponsors/dgibbs64) and [PayPal](https://www.paypal.me/dgibbs64). I would like to thank everyone who sponsors me. Since 2012 LinuxGSM has been steadily growing with new servers, features and improvements added regularly.
+
+
+ 
+
+
+
+
+
+ <h2 id="markdown" class="header2">Contributors</h2> 
+
+
+
+
+
+ 
+
+
+A big thank you goes to all the wonderful people who contribute ideas, code, docs and support to this project.
+
+
+ 
+
+
+
 </div>
  <a href="kruceo.com">rasdadasddasdas</a></body>
