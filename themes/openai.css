@@ -126,10 +126,9 @@
     overflow-x: auto;
 }
 #markdown.inline-code{
-    background-color: #000;
-    color:#d1d3dc;
+    font-weight: bolder;
+    color:#fff;
     font-family: monospace;
-    padding-inline: 7px;
     /* border-radius: 7px; */
     /* padding: 7px; */
     overflow-x: auto;

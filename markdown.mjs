@@ -59,12 +59,12 @@ export function parse(string) {
     let raw = ('\n' + string + '\n')
         .replaceAll('|\n|', TABLEPIPE)
 
-        .replace(/\-.*?\n/g,(match)=>match.replace(/\n/,"\n\n"))
+        .replace(/(\-|\d\.).*?\n/g,(match)=>match.replace(/\n/,NEWLINE + NEWLINE))
         
         .replaceAll('\n',NEWLINE)
-        .replaceAll('<script', '&lt;script;')
-        .replaceAll('/script>', '&gt;')
-        .replaceAll('javascript:', 'JavaScript%20&#58;')
+        .replaceAll('<script', '&lt; script')
+        .replaceAll('</script', '&gt; script')
+        .replaceAll('javascript:', 'JavaScript')
     /**
      * All that uses NEWLINE like termination, runs first in the array,columns runs first than all
      */
@@ -82,18 +82,17 @@ export function parse(string) {
         new Regex('\\*\\*\\*'                       ,     ".*?"     , '\\*\\*\\*',                    italicBoldElement),
         new Regex('\\*\\*'                          ,     ".*?"     , '\\*\\*',                       boldElement),
         new Regex('\\*'                             ,     ".*?"     , '\\*',                          italicElement),
-        new Regex('_'                               ,     ".*?"     , '_'                     ,       italicElement),
         new Regex(NEWLINE + '(\\&gt;|>)'            ,     ".*?"     , NEWLINE,                        quoteElement),
-        new Regex('\\!\\[.*?\\]\\('                 ,     ".*?"     , "\\)" + NEWLINE,                imageElement),
-        new Regex('\\[.*?\\]\\(', "\\)"             ,     ".*?"     ,                                 anchorElement),
+        new Regex('\\!\\[.*?\\]\\('                 ,     ".*?"     , "\\)",                imageElement),
+        new Regex('\\[.*?\\]\\('                    ,     ".*?"     , "\\)",                          anchorElement),
         new Regex('\\* '                            ,     ".*?"     , NEWLINE,                        dotListElement),
+        new Regex('_'                             ,     ".*?"     , '\\_'                     ,       italicElement),
 
         new Regex('\\:',"[\\w]+", "\\:", emojiElement),
     ]
 
     regexList.forEach((each, index) => {
-        raw = "" + each.applyToString(raw) + ''
-        // console.log(raw)
+        raw = each.applyToString(raw);
     })
     return "<div id=\"markdown\" class=\"background\">" + raw.replaceAll(NEWLINE, "\n") + "\n</div>"
 
