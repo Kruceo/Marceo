@@ -1,6 +1,6 @@
 {
   "name": "mark",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A markdown-html parser.",
   "main": "index.mjs",
   "scripts": {

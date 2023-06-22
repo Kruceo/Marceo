@@ -58,7 +58,10 @@ export function parse(string) {
     const TABLEPIPE = "@TABLEPIPE@"
     let raw = ('\n' + string + '\n')
         .replaceAll('|\n|', TABLEPIPE)
-        .replaceAll('\n', NEWLINE + ' ' + NEWLINE)
+
+        .replace(/\-.*?\n/g,(match)=>match.replace(/\n/,"\n\n"))
+        
+        .replaceAll('\n',NEWLINE)
         .replaceAll('<script', '&lt;script;')
         .replaceAll('/script>', '&gt;')
         .replaceAll('javascript:', 'JavaScript%20&#58;')
@@ -74,7 +77,8 @@ export function parse(string) {
         new Regex(NEWLINE + '# '                    ,     ".*?"     , `(#${NEWLINE}|${NEWLINE})`,     header1Element),
         new Regex(NEWLINE + '--'                    ,     ".*?"     , "-" + NEWLINE,                  lineElement),
         new Regex(NEWLINE + '\\d\\.?'               ,     ".*?"     , NEWLINE,                        numListElement),
-        new Regex(NEWLINE + "\\-"                   ,     ".*?"     , "(" + NEWLINE + ")",            dotListElement),
+        new Regex("("+NEWLINE + "\\s*?\\-)"         ,     "[^\\-]*?", NEWLINE,            dotListElement),
+        
         new Regex('\\*\\*\\*'                       ,     ".*?"     , '\\*\\*\\*',                    italicBoldElement),
         new Regex('\\*\\*'                          ,     ".*?"     , '\\*\\*',                       boldElement),
         new Regex('\\*'                             ,     ".*?"     , '\\*',                          italicElement),
@@ -91,6 +95,6 @@ export function parse(string) {
         raw = "" + each.applyToString(raw) + ''
         // console.log(raw)
     })
-    return "<div id=\"markdown\" class=\"background\">" + raw.replaceAll(NEWLINE, '\n\n\n') + "\n</div>"
+    return "<div id=\"markdown\" class=\"background\">" + raw.replaceAll(NEWLINE, "\n") + "\n</div>"
 
 }

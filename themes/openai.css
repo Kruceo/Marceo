@@ -113,7 +113,7 @@
     font-size: 20px;
 }
 #markdown.quote{
-    background-color: #ddd;
+    background-color: #222;
 }
 
 #markdown.code-block{
@@ -123,6 +123,15 @@
 
     border-radius: 7px;
     padding: 7px;
+    overflow-x: auto;
+}
+#markdown.inline-code{
+    background-color: #000;
+    color:#d1d3dc;
+    font-family: monospace;
+    padding-inline: 7px;
+    /* border-radius: 7px; */
+    /* padding: 7px; */
     overflow-x: auto;
 }
 #markdown.anchor{
