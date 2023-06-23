@@ -3,7 +3,7 @@ export function dotListElement(first,last,content){
     return `
 <p id="markdown" class="list-item level${space}">
     <span style="white-space:pre-wrap">${"".padEnd(space*10, ' ')}</span>
-    <span id="markdown" class="list-dot level${space}">• </span>${content}
+    <span id="markdown" class="list-dot level${space}"></span>${content}
 </p>
 ${last[0]}`
 

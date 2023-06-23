@@ -112,6 +112,12 @@
     color: #d1d3dc88;
     font-size: 20px;
 }
+#markdown.list-dot::before{
+    content: "• ";
+}
+#markdown.list-dot.level1::before{
+    content: "◦ ";
+}
 #markdown.quote{
     background-color: #222;
 }
@@ -156,10 +162,108 @@
     color:#d1d3dc;
     font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }</style>
-<div id="markdown" class="background"><h1 id="markdown" class="header1">LinuxKit</h1>
-<a id="markdown" class="anchor" href="https://circleci.com/gh/linuxkit/linuxkit"><img id="markdown" class="image" src="https://kruceo.com/cat&UnderBar;logo&UnderBar;preenchido.png"></img></a>
+<div id="markdown" class="background">
+Claro! Aqui está um exemplo de Markdown com várias sintaxes, incluindo sintaxes individuais e combinadas com outras:
+
+# Título
+## Subtítulo
+
+**Negrito** ou __Negrito__
+<br>
+*Itálico* ou _Itálico_
+<br>
+***Negrito e itálico*** ou ___Negrito e itálico___
+<br>
+~~Riscado~~
+
+> Citação em bloco
+
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-num level0">
+1.</span>
+     Lista numerada
+</p>
 
 
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-num level0">
+2.</span>
+     Segundo item
+</p>
+
+
+<p id="markdown" class="list-item level1">
+    <span style="white-space:pre-wrap">          </span>
+    <span id="markdown" class="list-dot level1"></span> Subitem com marcador
+</p>
+
+
+<p id="markdown" class="list-item level1">
+    <span style="white-space:pre-wrap">          </span>
+    <span id="markdown" class="list-dot level1"></span> Outro subitem com marcador
+</p>
+
+
+
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-dot level0"></span> Lista com marcadores
+</p>
+
+
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-dot level0"></span> Segundo item
+</p>
+
+
+<p id="markdown" class="list-item level1">
+    <span style="white-space:pre-wrap">          </span>
+    <span id="markdown" class="list-num level1">
+    1.</span>
+     Subitem numerado
+</p>
+
+
+<p id="markdown" class="list-item level1">
+    <span style="white-space:pre-wrap">          </span>
+    <span id="markdown" class="list-num level1">
+    2.</span>
+     Outro subitem numerado
+</p>
+
+
+
+[Ancora](https://www.exemplo.com)
+
+![Imagem](caminho/para/imagem.jpg)
+
+`Código em linha`
+
+```python
+# Bloco de código em Python
+def soma(a, b):
+    return a + b
+```
+
+| Tabela | Coluna 1 | Coluna 2 @TABLEPIPE@--------|----------|----------@TABLEPIPE@ Linha 1 | Celula 1 | Celula 2 @TABLEPIPE@ Linha 2 | Celula 3 | Celula 4 |
+
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-dot level0"></span> [x] Tarefa concluída
+</p>
+
+
+<p id="markdown" class="list-item level0">
+    <span style="white-space:pre-wrap"></span>
+    <span id="markdown" class="list-dot level0"></span> [ ] Tarefa não concluída
+</p>
+
+
+
+Isso é apenas um exemplo para demonstrar diferentes sintaxes do Markdown. Sinta-se à vontade para adaptá-lo às suas necessidades.
 
 </div>
  <a href="kruceo.com">rasdadasddasdas</a></body>

@@ -112,6 +112,12 @@
     color: #d1d3dc88;
     font-size: 20px;
 }
+#markdown.list-dot::before{
+    content: "• ";
+}
+#markdown.list-dot.level1::before{
+    content: "◦ ";
+}
 #markdown.quote{
     background-color: #222;
 }
