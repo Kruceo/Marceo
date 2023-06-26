@@ -1,19 +1,23 @@
 export function tableElement(first, last, content) {
 
-    let padContent = content
+    
     let NEWLINE = first[0].replaceAll('|', '')
+    let padContent = content.replace(new RegExp(`(?!\\|)${NEWLINE}(?!\\|)`,'g'),`|${NEWLINE}|`)
+    console.log("NEWLINE:",NEWLINE)
     const split = padContent.split('|')
+    console.log(padContent)
     let rowIndex = 0
     let rows = []
     let isHeader = true
     split.forEach(element => {
+        if(element == '')return;
         if (element == NEWLINE) {
             rowIndex++
             return null;
         }
-
-        if(/(\-)+\-$/.test(element)){
-            console.log(true)
+        
+        if(/^(\s)*?\-(\-)+\-(\s)*?$/.test(element)){
+            console.log('|'+element+'|',true)
             isHeader = false
             return null
         }
@@ -26,9 +30,8 @@ export function tableElement(first, last, content) {
             })
     });
 
-    console.log(rows)
+   
     const biggerRowLength = [...rows].sort((a, b) => b.length - a.length)[0].length
-    console.log(rows)
     let result = ''
     let error = false
     rows.forEach((row,rowIndex) => {

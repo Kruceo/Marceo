@@ -16,6 +16,8 @@ import { emojiElement } from './src/types/emoji.mjs'
 import { scratchedElement } from './src/types/scratched.mjs'
 import { taskElement } from './src/types/task.mjs'
 import { tableElement } from './src/types/table.mjs'
+import { differentTableElement } from './src/types/differentTable.mjs'
+import { textify } from './src/lib/textify.mjs'
 
 class Regex {
     constructor(firstSymbol,content, lastSymbol, callback) {
@@ -37,8 +39,8 @@ class Regex {
             match.forEach((each, index) => {
                 let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))
                 let literalLastSymbol = each.match(new RegExp(this.lastSymbol))
+               
                 let content = each.slice(literalFirstSymbol[0].length, each.length - literalLastSymbol[0].length)
-
                 const result = this.callback(literalFirstSymbol, literalLastSymbol, content)
                 newString = newString.replace(each, result)
 
@@ -56,42 +58,46 @@ class Regex {
 }
 
 export function parse(string) {
-    const NEWLINE = "@NEWLINE@"
+    const NEWLINE = "@NEWLINE@s"
     let raw = ('\n' + string + '\n')
         // .replace(/(\- |\d\.).*?\n/g,(match)=>match.replace(/\n/,NEWLINE +""+ NEWLINE))
+        .replace(/\n(?!\|).*?\|.*?(?=\n)/g,(m)=>{
+            console.log(m)
+            return m.replace('\n','\n|') + "|"
+        })
         .replaceAll('\n',NEWLINE)
         .replaceAll('<script', '&lt; script')
         .replaceAll('</script', '&gt; script')
-        .replaceAll('javascript:', 'JavaScript')
+        .replaceAll('javascript:', textify('JavaScript:'))
     /**
      * All that uses NEWLINE like termination, runs first in the array,columns runs first than all
      */
     const regexList = [
-        new Regex(NEWLINE + '\\`\\`\\`.*?' + NEWLINE    ,     ".*?"     , '\\`\\`\\`'                   , codeBlockElement),
-        new Regex('\\`'                                 ,     ".*?"     , '\\`'                         , inlineCodeElement),
-        new Regex(`(\\${NEWLINE}\\|)`                   ,     `(.*?)`   ,`(\\|\\${NEWLINE})(?!\\|)`     ,tableElement),
-        new Regex('\\!\\[.*?\\]\\('                     ,     ".*?"     , "\\)"                         , imageElement),
-        new Regex('\\[.*?\\]\\('                        ,     ".*?"     , "\\)"                         , anchorElement),
-        
-        new Regex(NEWLINE + '### '                      ,     ".*?"     , `(###${NEWLINE}|${NEWLINE})`  , header3Element),
-        new Regex(NEWLINE + '## '                       ,     ".*?"     , `(##${NEWLINE}|${NEWLINE})`   , header2Element),
-        new Regex(NEWLINE + '# '                        ,     ".*?"     , `(#${NEWLINE}|${NEWLINE})`    , header1Element),
-        new Regex(NEWLINE + '--'                        ,     ".*?"     , "-" + NEWLINE                 , lineElement),
-        new Regex(NEWLINE + '(\\&gt;|>)'                ,     ".*?"     , NEWLINE                       , quoteElement),
-        
-        new Regex('(\\[\\s\\]|\\[\\x\\])'               ,     ".*?"     ,  ''                           , taskElement),
-        new Regex('\\*\\*\\*'                           ,     `(?!${NEWLINE})*`     , `\\*\\*\\*`                   , italicBoldElement),
-        new Regex('\\*\\*'                              ,     `(?!${NEWLINE})*`     , `\\*\\*`                      , boldElement),
-        new Regex('\\*'                                 ,     `(?!${NEWLINE})*`     , `\\*`                         , italicElement),
-        new Regex("("+NEWLINE + '\\s*?\\d\\.)'          ,     ".*?"     , `(?=${NEWLINE})`                       , numListElement),
-        new Regex("("+NEWLINE + "\\s*?\\-)"             ,     "[^\\*]*?", `(?=${NEWLINE})`                       , dotListElement),
-        new Regex(NEWLINE+'\\* '                        ,     "[^\\*]*?", `(?=${NEWLINE})`                       , dotListElement),
-        new Regex('_'                                   ,     ".*?"     , '\\_'                         , italicElement),
-        new Regex('~~'                                  ,     ".*?"     , '~~'                          , scratchedElement),
-        new Regex('\\:'                                 ,     "[\\w]+"  , "\\:"                         , emojiElement),
-        
+        new Regex(NEWLINE + '\\`\\`\\`.*?' + NEWLINE, ".*?"                 , '\\`\\`\\`'                   , codeBlockElement),
+        new Regex('\\`'                             , ".*?"                 , '\\`'                         , inlineCodeElement),
+        new Regex(`(\\${NEWLINE}\\|)`               , `.*?`                 ,`(\\|\\${NEWLINE})(?!\\|)`     , tableElement),
+        new Regex('\\!\\[.*?\\]\\('                 , ".*?"                 , "\\)"                         , imageElement),
+        new Regex('\\[.*?\\]\\('                    , ".*?"                 , "\\)"                         , anchorElement),
+        new Regex(NEWLINE + '### '                  , ".*?"                 , `(###${NEWLINE}|${NEWLINE})`  , header3Element),
+        new Regex(NEWLINE + '## '                   , ".*?"                 , `(##${NEWLINE}|${NEWLINE})`   , header2Element),
+        new Regex(NEWLINE + '# '                    , ".*?"                 , `(#${NEWLINE}|${NEWLINE})`    , header1Element),
+        new Regex(NEWLINE + '(\\&gt;|>)'            , ".*?"                 , NEWLINE                       , quoteElement),
+        new Regex('(\\[\\s\\]|\\[\\x\\])'           , ".*?"                 ,  ''                           , taskElement),
+        new Regex('\\*\\*\\*'                       , `(?!${NEWLINE})*`     , `\\*\\*\\*`                   , italicBoldElement),
+        new Regex('\\*\\*'                          , `(?!${NEWLINE})*`     , `\\*\\*`                      , boldElement),
+        new Regex('\\*'                             , `(?!${NEWLINE})*`     , `\\*`                         , italicElement),
+        new Regex("("+NEWLINE + '\\s*?\\d\\.)'      , ".*?"                 , `(?=${NEWLINE})`              , numListElement),
+        new Regex("("+NEWLINE + "\\s*?\\-)"         , "[^\\*]*?"            , `(?=${NEWLINE})`              , dotListElement),
+        new Regex(NEWLINE+'\\* '                    , "[^\\*]*?"            , `(?=${NEWLINE})`              , dotListElement),
+        new Regex('_'                               , ".*?"                 , '\\_'                         , italicElement),
+        new Regex('~~'                              , ".*?"                 , '~~'                          , scratchedElement),
+        new Regex('\\:'                             , "[\\w]+"              , "\\:"                         , emojiElement),
+        new Regex(NEWLINE + '--'                    , ".*?"                 , "-" + NEWLINE                 , lineElement),
+        new Regex(NEWLINE                           , ""                    , NEWLINE                       , ()=>"<br>"),
+       
     ]
     regexList.forEach((each, index) => {
+        console.log("Running",each.exp)
         raw = each.applyToString(raw);
     })
 

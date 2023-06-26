@@ -1,3 +1,10 @@
 export function imageElement(first,last,content){
-    return `<img id="markdown" class="image" src="${content.replaceAll("_","&UnderBar;")}"></img>`
+    const alt = first[0].slice(2,first[0].length - 2)
+    let cntt = content
+    let title = content.match(/(\"|\').*?(\"|\')/)
+    if(title){
+        title = title[0]
+        cntt = cntt.replaceAll(title,'')}
+    console.log(cntt)
+    return `<img id="markdown" class="image" src="${cntt.replaceAll("_","&UnderBar;")}" title=${title} alt="${alt}"></img>`
 }
