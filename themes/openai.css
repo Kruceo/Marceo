@@ -111,6 +111,14 @@
     padding-bottom: 10px;
     max-width: 100%;
 }
+
+#markdown .line{
+    background-color: #000;
+    height: 4px;
+    opacity: .2;
+    border-radius: 10px;
+}
+
 #markdown.list-item{
     color:#d1d3dc
 }
@@ -159,13 +167,23 @@
 }
 
 #markdown.code-block{
-    background-color: #000;
+   
     color:#d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
     border-radius: 7px;
-    padding: 7px;
     overflow-x: auto;
+}
+
+#markdown.code-block .language{
+    padding: 7px;
+    font-size: 10px;
+    background: #343541;
+}
+#markdown.code-block .code{
+    padding: 7px;
+    background-color: #000;
+    background: #000;
 }
 #markdown.inline-code{
     font-weight: bolder;
@@ -179,6 +197,7 @@
 }
 
 #markdown.table{
+    display: flex;
     width: fit-content;
     border-radius: 6px;
     border: white 1px solid;
