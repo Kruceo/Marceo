@@ -4,7 +4,7 @@
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon testing.mjs & vite & xdg-open http://localhost:5173/testing.html"
   },
   "author": "kruceo",
   "license": "ISC"
