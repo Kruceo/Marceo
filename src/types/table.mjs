@@ -45,7 +45,8 @@ export function tableElement(first, last, content) {
             
             result += `<div id="markdown" 
             class="cel ${isLeft?"left":''} ${isRight?"right":''} ${isBottom?'bottom':''} ${col.isHeader ? 'header' : ''}" 
-            style="grid-column:span ${rowCelWidth}">${col.content}
+            style="grid-column:span ${rowCelWidth}">
+            ${col.content}
             </div>`
         })
     })
