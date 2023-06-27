@@ -29,9 +29,7 @@ export function parse(string) {
 
     const preprocess = [
         new Regex("\n(?!\\|)","[^\n]+?\\|[^\n]+","(?=\n)",(f,l,c)=>{return "\n|"+c+"|"}),  //prepare to accept non-piped tables
-
         new Regex("(?!\\`.*?)\n","","",(f,l,c)=>{return NEWLINE}),
-
         new Regex('','javascript:','',()=>textify('/javascript:')),
         new Regex("<script",".*?","</script>",(f,l,c)=>{return textify(f+c+l)}),
        
@@ -53,10 +51,10 @@ export function parse(string) {
         new Regex("("+NEWLINE + '\\s*?\\d\\.)'         , ".*?"                 , `(?=${NEWLINE})`       , numListElement),
         new Regex("("+NEWLINE + "\\s*?\\-)[^\\-]"      , "[^\\*]*?"            , `(?=${NEWLINE})`       , dotListElement),
         new Regex(NEWLINE+'\\* '                       , "[^\\*]*?"            , `(?=${NEWLINE})`       , dotListElement),
-        new Regex('_'                                  , ".*?"                 , '\\_'                  , italicElement),
+        new Regex('_'                                  , "[^\s]*?"             , '_'                    , italicElement),
         new Regex('~~'                                 , ".*?"                 , '~~'                   , scratchedElement),
-        new Regex('\\:'                                , "[\\w]+"              , "\\:"                  , emojiElement),
         new Regex(`-`                                  , "(-)*"                , `--`                   , lineElement),
+        new Regex('\\:'                                , "[\\w]+"              , "\\:"                  , emojiElement),
         new Regex(NEWLINE                              , "[\\s]*"              , NEWLINE                , ()=>"<br>"),
     ]
     preprocess.forEach((each, index) => {

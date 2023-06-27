@@ -43,11 +43,9 @@ export function tableElement(first, last, content) {
             let isBottom = (rowIndex == rows.length-1)
             let isTop = (rowIndex == 0)
             
-            result += `<div id="markdown" 
-            class="cel ${isLeft?"left":''} ${isRight?"right":''} ${isBottom?'bottom':''} ${col.isHeader ? 'header' : ''}" 
-            style="grid-column:span ${rowCelWidth}">
-            ${col.content}
-            </div>`
+            result += `<div id="markdown" class="cel ${isLeft?"left":''} ${isRight?"right":''} ${isBottom?'bottom':''} ${isTop?'top':''} ${col.isHeader ? 'header' : ''}" \
+            style="grid-column:span ${rowCelWidth}"\
+            >${col.content}</div>`
         })
     })
     if(error)return first[0] + content + last[0]

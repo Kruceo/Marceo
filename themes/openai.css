@@ -155,6 +155,7 @@
     color: transparent;
 }
 #markdown.task >.inner{
+    
     position: absolute;
     left: 0;
     top: 0;
@@ -167,7 +168,6 @@
 }
 
 #markdown.code-block{
-   
     color:#d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
@@ -179,6 +179,7 @@
     padding: 7px;
     font-size: 10px;
     background: #343541;
+    text-transform: lowercase;
 }
 #markdown.code-block .code{
     padding: 7px;
