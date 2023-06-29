@@ -27,16 +27,7 @@ export function parse(string) {
     const NEWLINE = "\n"
     let raw = ('\n' + string + '\n')
     
-    const preprocess = [
-        /**ERRO AQUI MEU PARCEIRO  ⇩  (f,l,c)=>"\n```" + c +'```\n'*/
-        
-       
-        // new Regex("(?!\\`.*?)\n"                        ,""                    ,""                     ,(f,l,c)=>{return NEWLINE}),
-        // new Regex(''                                    ,'javascript:'         ,''                     ,()=>textify('/javascript:')),
-        // new Regex("<script",".*?","</script>",(f,l,c)=>{return textify(f+c+l)}),
-       
-    ]
-    const posprocess = [
+    const plugins = [
         htmlTag,
         codeBlock,
         tabBlock,
@@ -56,12 +47,8 @@ export function parse(string) {
         new Regex('\\:'                                , "[\\w]+"              , "\\:"                  , emojiElement),
         new Regex(NEWLINE                              , "[\n]*?"              , NEWLINE                , ()=>"<br>"),
     ]
-    preprocess.forEach((each, index) => {
-        // console.log("Pre-Process: ",each.exp)
-        raw = each.applyToString(raw);
-    })
 
-    posprocess.forEach((each, index) => {
+    plugins.forEach((each, index) => {
         // console.log("Pos-Process",each.exp)
         raw = each.applyToString(raw);
     })

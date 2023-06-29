@@ -1,11 +1,25 @@
 {
   "name": "markup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "main": "index.mjs",
+  "devDependencies": {},
   "scripts": {
-    "dev": "nodemon testing.mjs & vite & xdg-open http://localhost:5173/testing.html"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kruceo/Markup.git"
+  },
+  "keywords": [
+    "markdown",
+    "html",
+    "parser"
+  ],
   "author": "kruceo",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kruceo/Markup/issues"
+  },
+  "homepage": "https://github.com/Kruceo/Markup#readme"
 }
