@@ -101,24 +101,67 @@
     font-weight: 400;
     src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
 }
-#markdown a{
-    color:#fff;
-    font-weight: bold;
+
+
+/* ---------------- HEADERS => all lines that starts with # ------------------ */
+#markdown .header1{
+    /* # text */
+    font-size: auto;
+}
+#markdown .header2{
+    /* ## text */
+    font-size: auto;
+}
+#markdown .header3{
+    /* ### text */
+    font-size: auto;
+}
+#markdown .header4{
+    /* #### text */
+    font-size: auto;    
 }
 
+
+/* ---------------- BOLD => ** example ** ------------------ */
+#markdown .bold{
+    /* if you not want the default bold uncomment this:*/
+    /* font-weight: initial !important; */
+}
+
+
+/* ---------------- ITALIC => * example * or _example_ ------------------ */
+#markdown .italic{
+    /* if you not want the default italic uncomment this:*/
+    /* font-style: initial!important; */
+}
+
+
+/* ---------------- SCRATCHED => ~~ example ~~ ------------------ */
+#markdown .italic{
+    /* if you not want the default italic uncomment this:*/
+    /* font-style: initial!important; */
+}
+
+
+/* ---------------- IMAGE => ![alt](http://example.com/img.png) ------------------ */
 #markdown img{
     padding-top: 10px;
     padding-bottom: 10px;
     max-width: 100%;
 }
 
+
+/* ---------------- LINE => --- ------------------ */
 #markdown .line{
     background-color: #000;
     height: 4px;
     opacity: .2;
     border-radius: 10px;
+    margin-top: 20px;
 }
 
+
+/* ---------------- LIST => - or .1 ------------------ */
 #markdown.list-item{
     color:#d1d3dc
 }
@@ -135,11 +178,19 @@
 #markdown.list-dot.level1::before{
     content: "◦ ";
 }
+
+
+/* ---------------- QUOTE BLOCK => > a good example! ------------------ */
 #markdown.quote{
     border-left: 3px #d1d3dc solid;
     padding-left: 3px;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+
+/* ---------------- TASK => [x] ------------------ */
 #markdown.task{
     display: inline-block;
     border: 2px #d1d3dc solid;
@@ -167,36 +218,68 @@
     content: "✓";
 }
 
+
+/* ---------------- CODE BLOCK =>  ```example``` ------------------ */
 #markdown.code-block{
     color:#d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
     border-radius: 7px;
-    overflow-x: auto;
+    overflow: hidden;
+    
 }
-
 #markdown.code-block .language{
     padding: 7px;
+   
     font-size: 10px;
     background: #343541;
     text-transform: lowercase;
 }
 #markdown.code-block .code{
+    width: 100%;
     padding: 7px;
     background-color: #000;
-    background: #000;
 }
+
+
+/* ---------------- TAB BLOCK =>    example tabbed code ------------------ */
+#markdown.tab-block {
+    color:#d1d3dc;
+    font-family: monospace;
+    margin: 20px 0 20px 0;
+    border-radius: 7px;
+    overflow: auto;
+}
+#markdown.tab-block .code{
+    width: max-content;
+    min-width: 97.749996%;
+    padding: 7px;
+    background-color: #444;
+}
+
+
+/* ---------------- INLINE CODE => `example` ------------------ */
 #markdown.inline-code{
     font-weight: bolder;
     color:#fff;
     font-family: monospace;
     overflow-x: auto;
 }
+
+
+/* ---------------- ANCHOR => [text](http://example.com) ------------------ */
 #markdown.anchor{
     color:#fff;
     font-weight: bold;
 }
+#markdown a{
+    /* case use direct html code */
+    color:#fff;
+    font-weight: bold;
+}
 
+
+/* ---------------- INLINE CODE => |example1|example2| ------------------ */
 #markdown.table{
     display: flex;
     width: fit-content;
@@ -215,6 +298,11 @@
     height: 100%;
     color:#d1d3dc;
 }
+#markdown.table .cel.header{
+    background-color: rgba(236,236,241,.2);
+    color:white;
+    font-weight: bold;
+}
 #markdown.table .cel.left{
     border-left: none;
     border-bottom: white 1px solid;
@@ -222,12 +310,15 @@
 #markdown.table .cel.bottom{
     border-bottom: none;
 }
-#markdown.table .cel.header{
-    background-color: rgba(236,236,241,.2);
-    color:white;
-    font-weight: bold;
+#markdown.table .cel.right{
+    /* unused in this case */
+}
+#markdown.table .cel.top{
+    /* unused in this case */
 }
 
+
+/* ---------------- BACKGROUND ------------------ */
 #markdown.background{
     margin: 0;
     padding: 20px;

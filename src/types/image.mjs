@@ -1,3 +1,5 @@
+import { textify } from "../lib/textify.mjs"
+
 export function imageElement(first,last,content){
     const alt = first[0].slice(2,first[0].length - 2)
     let cntt = content
@@ -6,5 +8,5 @@ export function imageElement(first,last,content){
         title = title[0]
         cntt = cntt.replaceAll(title,'')}
     console.log(cntt)
-    return `<img id="markdown" class="image" src="${cntt.replaceAll("_","&UnderBar;")}" title=${title} alt="${alt}"></img>`
+    return `<img id="markdown" class="image" src="${textify(cntt)}" title=${textify(title)} alt="${textify(alt)}"></img>`
 }
