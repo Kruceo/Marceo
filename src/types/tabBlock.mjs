@@ -3,7 +3,7 @@ import Regex from "../lib/Regex.mjs";
 import { textify } from "../lib/textify.mjs";
 import { differentTableElement } from "./differentTable.mjs";
 
-export function tabBlockElement(a,b,content){
+function tabBlockElement(a,b,content){
     let c = content.split('\n')
         .reduce((acum,next)=>{
             let n = next + '\n'
@@ -18,5 +18,4 @@ export function tabBlockElement(a,b,content){
 
 export const tabBlock = new Plugin([
     new Regex('(\n {4})', "[^\\`]+?", '\n(?!\\s{4})(\n)*?', tabBlockElement)
-
 ])

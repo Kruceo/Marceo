@@ -102,6 +102,16 @@
     src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
 }
 
+/* ---------------- BACKGROUND ------------------ */
+#markdown.background {
+    --primary:#345;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+    color: #222;
+    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
 
 /* ---------------- HEADERS => all lines that starts with # ------------------ */
 #markdown .header1 {
@@ -166,13 +176,13 @@
 
 /* ---------------- LIST => .1 example ------------------ */
 #markdown.list-item {
-    color: #d1d3dc
+    /* color: #eee; */
 }
 #markdown.list-item .num.left::before {
     content: "";
 }
 #markdown.list-item .num {
-    color: #d1d3dc88;
+    color: var(--primary);
 }
 #markdown.list-item .num.right::before {
     content: ".";
@@ -186,7 +196,7 @@
 
 /* ---------------- LIST => * or - example text ------------------ */
 #markdown.list-dot {
-    color: #d1d3dc88;
+    color: var(--primary);
     font-size: 20px;
 }
 
@@ -201,7 +211,7 @@
 
 /* ---------------- QUOTE BLOCK => > a good example! ------------------ */
 #markdown.quote {
-    border-left: 3px #d1d3dc solid;
+    border-left: 3px var(--primary) solid;
     padding-left: 3px;
     font-weight: bold;
     margin-top: 20px;
@@ -212,7 +222,7 @@
 /* ---------------- TASK => [x] ------------------ */
 #markdown.task {
     display: inline-block;
-    border: 2px #d1d3dc solid;
+    border: 2px #444 solid;
     padding-left: 3px;
     font-weight: bold;
     width: fit-content;
@@ -243,74 +253,71 @@
 
 /* ---------------- CODE BLOCK =>  ```example``` ------------------ */
 #markdown.code-block {
-    color: #d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
-    border-radius: 7px;
-    overflow: hidden;
+    overflow: auto;
+    border-left:7px #0003 solid;
+    border-collapse: collapse;
 }
 
 #markdown.code-block .language {
     padding: 7px;
-
+    display: none;
     font-size: 10px;
-    background: #343541;
+    background: #222;
     text-transform: lowercase;
 }
 
 #markdown.code-block .code {
     /* white-space: initial!important; */
-    width: 100%;
+    color: #eee;
+    width: max-content;
+    min-width: 100%;
+    box-sizing: border-box;
     padding: 7px;
-    background-color: #000;
+    background-color: var(--primary);
 }
 
 
 /* ---------------- TAB BLOCK =>    example tabbed code ------------------ */
 #markdown.tab-block {
-    color: #d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
-    border-radius: 7px;
     overflow: auto;
 }
 
 #markdown.tab-block .code {
+    color: #eee;
     width: max-content;
     min-width: 97.749996%;
     padding: 7px;
-    background-color: #000;
+    background-color: var(--primary);
 }
 
 
 /* ---------------- INLINE CODE => `example` ------------------ */
 #markdown.inline-code {
-    font-weight: bolder;
-    color: #fff;
-    font-family: monospace;
+    color: #eee;
+    background-color: var(--primary);
     overflow-x: auto;
+    padding-inline: 5px;
+    white-space: pre;
 }
 
 
 /* ---------------- ANCHOR => [text](http://example.com) ------------------ */
-#markdown.anchor {
-    color: #fff;
+#markdown.anchor{
+    color: #8ff!important;
     font-weight: bold;
 }
 
-#markdown a {
-    /* case use direct html code */
-    color: #fff;
-    font-weight: bold;
-}
 
 
 /* ---------------- INLINE CODE => |example1|example2| ------------------ */
 #markdown.table {
     display: flex;
     width: fit-content;
-    border-radius: 6px;
-    border: white 1px solid;
+    border: #eee2 1px solid;
     overflow: hidden;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -319,22 +326,18 @@
 #markdown.table .cel {
     padding: 5px;
     box-sizing: border-box;
-    border-left: white 1px solid;
-    border-bottom: white 1px solid;
     width: 100%;
     height: 100%;
-    color: #d1d3dc;
+    color: #eee;
 }
 
 #markdown.table .cel.header {
-    background-color: rgba(236, 236, 241, .2);
-    color: white;
+    background-color: #eee2;
+    color: #eee;
     font-weight: bold;
 }
 
 #markdown.table .cel.left {
-    border-left: none;
-    border-bottom: white 1px solid;
 }
 
 #markdown.table .cel.bottom {
@@ -347,14 +350,4 @@
 
 #markdown.table .cel.top {
     /* unused in this case */
-}
-
-
-/* ---------------- BACKGROUND ------------------ */
-#markdown.background {
-    margin: 0;
-    padding: 20px;
-    background-color: rgb(68, 70, 84);
-    color: #d1d3dc;
-    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }

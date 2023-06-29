@@ -1,6 +1,8 @@
+import Plugin from "../lib/Plugin.mjs"
+import Regex from "../lib/Regex.mjs"
 import { textify } from "../lib/textify.mjs"
 
-export function imageElement(first,last,content){
+function imageElement(first,last,content){
     const alt = first[0].slice(2,first[0].length - 2)
     let cntt = content
     let title = content.match(/(\"|\').*?(\"|\')/)
@@ -10,3 +12,7 @@ export function imageElement(first,last,content){
     console.log(cntt)
     return `<img id="markdown" class="image" src="${textify(cntt)}" title=${textify(title)} alt="${textify(alt)}"></img>`
 }
+
+export const image = new Plugin([
+    new Regex('\\!\\[.*?\\]\\('                    , ".*?"                 , "\\)"                  , imageElement)
+])

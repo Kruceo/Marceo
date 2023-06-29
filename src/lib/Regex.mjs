@@ -18,7 +18,6 @@ export default class Regex {
             match.forEach((each, index) => {
                 let literalFirstSymbol = each.match(new RegExp(this.firstSymbol))
                 let literalLastSymbol = each.match(new RegExp(this.lastSymbol))
-               
                 let content = each.slice(literalFirstSymbol[0].length, each.length - literalLastSymbol[0].length)
                 const result = this.process(literalFirstSymbol, literalLastSymbol, content)
                 newString = newString.replace(each, result)
