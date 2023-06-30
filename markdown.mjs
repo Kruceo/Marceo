@@ -53,5 +53,5 @@ export function parse(string) {
         raw = each.applyToString(raw);
     })
 
-    return "<div class=\"markdown background\">\n" + raw.replaceAll(NEWLINE, "\n") + "\n</div>"
+    return "<div class=\"markdown background\">\n" + raw.replaceAll(NEWLINE,'\n') + "\n</div>"
 }

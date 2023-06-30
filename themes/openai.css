@@ -101,7 +101,16 @@
     font-weight: 400;
     src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2) format("woff2")
 }
-
+/* ---------------- BACKGROUND ------------------ */
+.markdown.background {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(68, 70, 84);
+    color: #d1d3dc;
+    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
 
 /* ---------------- HEADERS => all lines that starts with # ------------------ */
 .markdown .header1 {
@@ -354,11 +363,3 @@
 }
 
 
-/* ---------------- BACKGROUND ------------------ */
-.markdown.background {
-    margin: 0;
-    padding: 20px;
-    background-color: rgb(68, 70, 84);
-    color: #d1d3dc;
-    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-}
