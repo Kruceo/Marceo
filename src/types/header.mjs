@@ -10,6 +10,7 @@ function header1Element(first, last, content) {
     `
 }
 function header2Element(first, last, content) {
+    console.log(content)
     const id = idfy(content)
     return `
     <h2 id="${id}" class="markdown header2" >${content}</h2>
@@ -41,10 +42,10 @@ function header6Element(first, last, content) {
 }
 
 export const headers = new Plugin([
-    new Regex(`(?:\n)###### `, "[^\n]+?", `(?:\n)`, header6Element),
-    new Regex(`(?:\n)##### `,  "[^\n]+?", `(?:\n)`, header5Element),
-    new Regex(`(?:\n)#### `,   "[^\n]+?", `(?:\n)`, header4Element),
-    new Regex(`(?:\n)### `,    "[^\n]+?", `(?:\n)`, header3Element),
-    new Regex(`(?:\n)## `,     "[^\n]+?", `(?:\n)`, header2Element),
-    new Regex(`(?:\n)# `,      "[^\n]+?", `(?:\n)`, header1Element),
+    new Regex(`(?:\n)###### `, "[^\n]+?", `(?=\n)`, header6Element),
+    new Regex(`(?:\n)##### `,  "[^\n]+?", `(?=\n)`, header5Element),
+    new Regex(`(?:\n)#### `,   "[^\n]+?", `(?=\n)`, header4Element),
+    new Regex(`(?:\n)### `,    "[^\n]+?", `(?=\n)`, header3Element),
+    new Regex(`(?:\n)## `,     "[^\n]+?", `(?=\n)`, header2Element),
+    new Regex(`(?:\n)# `,      "[^\n]+?", `(?=\n)`, header1Element),
 ])

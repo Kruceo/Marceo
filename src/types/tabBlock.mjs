@@ -13,7 +13,9 @@ function tabBlockElement(a,b,content){
             return acum + n
 
         },'')
-    return `<div class="markdown tab-block"><div class="code" style="white-space:pre-wrap;">${textify(c)}\</div></div>`
+    return `
+    <div class="markdown tab-block"><div class="code" style="white-space:pre-wrap;">${textify(c)}\</div></div>
+    `
 }
 
 export const tabBlock = new Plugin([

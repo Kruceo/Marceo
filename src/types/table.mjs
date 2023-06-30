@@ -46,16 +46,18 @@ export function tableElement(first, last, content) {
             let isBottom = (rowIndex == rows.length - 1)
             let isTop = (rowIndex == 0)
 
-            result += `<div id="markdown" class="cel ${isLeft ? "left" : ''} ${isRight ? "right" : ''} ${isBottom ? 'bottom' : ''} ${isTop ? 'top' : ''} ${col.isHeader ? 'header' : ''}" \
-            style="grid-column:span ${rowCelWidth}"\
-            >${col.content}</div>`
+            result += `
+            <div class="markdonw cel ${isLeft ? "left" : ''} ${isRight ? "right" : ''} ${isBottom ? 'bottom' : ''} ${isTop ? 'top' : ''} ${col.isHeader ? 'header' : ''}" \
+            style="grid-column:span ${rowCelWidth}"\>${col.content}</div>
+            `
         })
     })
     if (error) return first[0] + content + last[0]
-    return `\
+    return `
 <div class="markdown table" style="display:grid; grid-template-columns:repeat(${biggerRowLength},1fr)"> \
 ${result} \
-</div>`
+</div>
+`
 }
 
 export const table = new Plugin([
