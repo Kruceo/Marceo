@@ -104,50 +104,54 @@
 
 
 /* ---------------- HEADERS => all lines that starts with # ------------------ */
-#markdown .header1 {
+.markdown .header1 {
     /* # text */
+    font-weight: normal;
     font-size: auto;
 }
 
-#markdown .header2 {
+.markdown .header2 {
     /* ## text */
+    font-weight: normal;
     font-size: auto;
 }
 
-#markdown .header3 {
+.markdown .header3 {
     /* ### text */
+    font-weight: normal;
     font-size: auto;
 }
 
-#markdown .header4 {
+.markdown .header4 {
     /* #### text */
+    font-weight: normal;
     font-size: auto;
 }
 
 
 /* ---------------- BOLD => ** example ** ------------------ */
-#markdown .bold {
+.markdown .bold {
     /* if you not want the default bold uncomment this:*/
     /* font-weight: initial !important; */
 }
 
 
 /* ---------------- ITALIC => * example * or _example_ ------------------ */
-#markdown .italic {
+.markdown .italic {
     /* if you not want the default italic uncomment this:*/
     /* font-style: initial!important; */
 }
 
 
 /* ---------------- SCRATCHED => ~~ example ~~ ------------------ */
-#markdown .italic {
+.markdown .italic {
     /* if you not want the default italic uncomment this:*/
     /* font-style: initial!important; */
 }
 
 
 /* ---------------- IMAGE => ![alt](http://example.com/img.png) ------------------ */
-#markdown img {
+.markdown img {
     padding-top: 10px;
     padding-bottom: 10px;
     max-width: 100%;
@@ -155,7 +159,7 @@
 
 
 /* ---------------- LINE => --- ------------------ */
-#markdown .line {
+.markdown .line {
     background-color: #000;
     height: 4px;
     opacity: .2;
@@ -165,42 +169,42 @@
 
 
 /* ---------------- LIST => .1 example ------------------ */
-#markdown.list-item {
+.markdown.list-item {
     color: #d1d3dc
 }
-#markdown.list-item .num.left::before {
+.markdown.list-item .num.left::before {
     content: "";
 }
-#markdown.list-item .num {
+.markdown.list-item .num {
     color: #d1d3dc88;
 }
-#markdown.list-item .num.right::before {
+.markdown.list-item .num.right::before {
     content: ".";
 }
 
 
 /* ---------------- LIST => applied to all list syntax ------------------ */
-#markdown.list-item .pad {
+.markdown.list-item .pad {
     font-size: 10px;
 }
 
 /* ---------------- LIST => * or - example text ------------------ */
-#markdown.list-dot {
+.markdown.list-dot {
     color: #d1d3dc88;
     font-size: 20px;
 }
 
-#markdown.list-dot::before {
+.markdown.list-dot::before {
     content: "• ";
 }
 
-#markdown.list-dot.level1::before {
+.markdown.list-dot.level1::before {
     content: "◦ ";
 }
 
 
 /* ---------------- QUOTE BLOCK => > a good example! ------------------ */
-#markdown.quote {
+.markdown.quote {
     border-left: 3px #d1d3dc solid;
     padding-left: 3px;
     font-weight: bold;
@@ -210,7 +214,7 @@
 
 
 /* ---------------- TASK => [x] ------------------ */
-#markdown.task {
+.markdown.task {
     display: inline-block;
     border: 2px #d1d3dc solid;
     padding-left: 3px;
@@ -220,13 +224,13 @@
     position: relative;
 }
 
-#markdown.task::before {
+.markdown.task::before {
     content: "⬜";
     white-space: pre-wrap;
     color: transparent;
 }
 
-#markdown.task>.inner {
+.markdown.task>.inner {
 
     position: absolute;
     left: 0;
@@ -236,13 +240,13 @@
     height: 100%;
 }
 
-#markdown.task.checked>.inner::before {
+.markdown.task.checked>.inner::before {
     content: "✓";
 }
 
 
 /* ---------------- CODE BLOCK =>  ```example``` ------------------ */
-#markdown.code-block {
+.markdown.code-block {
     color: #d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
@@ -250,7 +254,7 @@
     overflow: hidden;
 }
 
-#markdown.code-block .language {
+.markdown.code-block .language {
     padding: 7px;
 
     font-size: 10px;
@@ -258,7 +262,7 @@
     text-transform: lowercase;
 }
 
-#markdown.code-block .code {
+.markdown.code-block .code {
     /* white-space: initial!important; */
     width: 100%;
     padding: 7px;
@@ -267,7 +271,7 @@
 
 
 /* ---------------- TAB BLOCK =>    example tabbed code ------------------ */
-#markdown.tab-block {
+.markdown.tab-block {
     color: #d1d3dc;
     font-family: monospace;
     margin: 20px 0 20px 0;
@@ -275,7 +279,7 @@
     overflow: auto;
 }
 
-#markdown.tab-block .code {
+.markdown.tab-block .code {
     width: max-content;
     min-width: 97.749996%;
     padding: 7px;
@@ -284,7 +288,7 @@
 
 
 /* ---------------- INLINE CODE => `example` ------------------ */
-#markdown.inline-code {
+.markdown.inline-code {
     font-weight: bolder;
     color: #fff;
     font-family: monospace;
@@ -293,12 +297,12 @@
 
 
 /* ---------------- ANCHOR => [text](http://example.com) ------------------ */
-#markdown.anchor {
+.markdown.anchor {
     color: #fff;
     font-weight: bold;
 }
 
-#markdown a {
+.markdown a {
     /* case use direct html code */
     color: #fff;
     font-weight: bold;
@@ -306,7 +310,7 @@
 
 
 /* ---------------- INLINE CODE => |example1|example2| ------------------ */
-#markdown.table {
+.markdown.table {
     display: flex;
     width: fit-content;
     border-radius: 6px;
@@ -316,7 +320,7 @@
     margin-top: 20px;
 }
 
-#markdown.table .cel {
+.markdown.table .cel {
     padding: 5px;
     box-sizing: border-box;
     border-left: white 1px solid;
@@ -326,32 +330,32 @@
     color: #d1d3dc;
 }
 
-#markdown.table .cel.header {
+.markdown.table .cel.header {
     background-color: rgba(236, 236, 241, .2);
     color: white;
     font-weight: bold;
 }
 
-#markdown.table .cel.left {
+.markdown.table .cel.left {
     border-left: none;
     border-bottom: white 1px solid;
 }
 
-#markdown.table .cel.bottom {
+.markdown.table .cel.bottom {
     border-bottom: none;
 }
 
-#markdown.table .cel.right {
+.markdown.table .cel.right {
     /* unused in this case */
 }
 
-#markdown.table .cel.top {
+.markdown.table .cel.top {
     /* unused in this case */
 }
 
 
 /* ---------------- BACKGROUND ------------------ */
-#markdown.background {
+.markdown.background {
     margin: 0;
     padding: 20px;
     background-color: rgb(68, 70, 84);

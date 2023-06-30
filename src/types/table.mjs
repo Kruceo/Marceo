@@ -53,7 +53,7 @@ export function tableElement(first, last, content) {
     })
     if (error) return first[0] + content + last[0]
     return `\
-<div id="markdown" class="table" style="display:grid; grid-template-columns:repeat(${biggerRowLength},1fr)"> \
+<div class="markdown table" style="display:grid; grid-template-columns:repeat(${biggerRowLength},1fr)"> \
 ${result} \
 </div>`
 }

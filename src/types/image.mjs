@@ -1,5 +1,6 @@
 import Plugin from "../lib/Plugin.mjs"
 import Regex from "../lib/Regex.mjs"
+import { idfy } from "../lib/idfy.mjs"
 import { textify } from "../lib/textify.mjs"
 
 function imageElement(first,last,content){
@@ -10,7 +11,7 @@ function imageElement(first,last,content){
         title = title[0]
         cntt = cntt.replaceAll(title,'')}
     console.log(cntt)
-    return `<img id="markdown" class="image" src="${textify(cntt)}" title=${textify(title)} alt="${textify(alt)}"></img>`
+    return `<img id="${idfy(alt)}" class="markdown image" src="${textify(cntt)}" title=${textify(title)} alt="${textify(alt)}"></img>`
 }
 
 export const image = new Plugin([

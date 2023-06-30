@@ -28,10 +28,10 @@ export function parse(string) {
     let raw = ('\n' + string + '\n')
     
     const plugins = [
-        htmlTag,
         codeBlock,
         tabBlock,
         inlineCode,
+        htmlTag,
         task,
         table,
         image,
@@ -53,5 +53,5 @@ export function parse(string) {
         raw = each.applyToString(raw);
     })
 
-    return "<div id=\"markdown\" class=\"background\">\n" + raw.replaceAll(NEWLINE, "\n") + "\n</div>"
+    return "<div class=\"markdown background\">\n" + raw.replaceAll(NEWLINE, "\n") + "\n</div>"
 }
