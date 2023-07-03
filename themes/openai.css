@@ -137,6 +137,18 @@
     font-size: auto;
 }
 
+.markdown .header5 {
+    /* #### text */
+    font-weight: normal;
+    font-size: auto;
+}
+
+.markdown .header6 {
+    /* #### text */
+    font-weight: normal;
+    font-size: auto;
+}
+
 
 /* ---------------- BOLD => ** example ** ------------------ */
 .markdown .bold {

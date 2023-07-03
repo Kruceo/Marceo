@@ -45,7 +45,7 @@ export function parse(string) {
         scratched,
         line,
         new Regex('\\:'                                , "[\\w]+"              , "\\:"                  , emojiElement),
-        new Regex(NEWLINE                              , "[\n]*?"              , NEWLINE                , ()=>"\n<br>\n"),
+        new Regex(NEWLINE                              , "[\n]+?"              , "(?!\n)"                , (a,b,c)=>"<br>"),
     ]
 
     plugins.forEach((each, index) => {

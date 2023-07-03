@@ -1,9 +1,8 @@
 {
   "name": "markup",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "main": "index.mjs",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
