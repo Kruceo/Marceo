@@ -19,6 +19,7 @@ import Regex from './src/lib/Regex.mjs'
 import {differentTableElement} from './src/types/differentTable.mjs'
 import { tabBlock } from './src/types/tabBlock.mjs'
 import { htmlTag } from './src/types/htmlTag.mjs'
+import { breakline } from './src/plugins/breakline.mjs'
 
 
 
@@ -45,11 +46,10 @@ export function parse(string) {
         scratched,
         line,
         new Regex('\\:'                                , "[\\w]+"              , "\\:"                  , emojiElement),
-        new Regex(NEWLINE                              , "[\n]+?"              , "(?!\n)"                , (a,b,c)=>"<br>"),
+        breakline
     ]
 
     plugins.forEach((each, index) => {
-        // console.log("Pos-Process",each.exp)
         raw = each.applyToString(raw);
     })
 
