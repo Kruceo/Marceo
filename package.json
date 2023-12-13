@@ -3,8 +3,13 @@
   "version": "0.3.0",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "main": "index.mjs",
+  "exports":{
+    "import":"./dist/index.cjs.js",
+    "require":"./dist/index.mjs"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"rollup -c"
   },
   "repository": {
     "type": "git",
@@ -20,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/Kruceo/Markup/issues"
   },
-  "homepage": "https://github.com/Kruceo/Markup#readme"
+  "homepage": "https://github.com/Kruceo/Markup#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.9.0"
+  }
 }
