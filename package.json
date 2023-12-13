@@ -1,6 +1,6 @@
 {
   "name": "markup",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "main": "index.mjs",
   "scripts": {
