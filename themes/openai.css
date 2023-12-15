@@ -154,6 +154,7 @@
 .markdown .bold {
     /* if you not want the default bold uncomment this:*/
     /* font-weight: initial !important; */
+    font-weight: bold;
 }
 
 
@@ -161,6 +162,7 @@
 .markdown .italic {
     /* if you not want the default italic uncomment this:*/
     /* font-style: initial!important; */
+    font-style: italic;
 }
 
 

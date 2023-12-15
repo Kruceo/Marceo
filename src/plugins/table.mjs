@@ -64,3 +64,5 @@ export const table = new Plugin([
     new Regex("\n(?!\\|)", "[^#\n]+?\\|[^\n]+", "(?=\n)", (f, l, c) => { return "\n|" + c + "|" }),  //prepare to accept non-piped tables
     new Regex(`(?:\n)\\|`, `.*?`, `\\|\n(?!\\|)`, tableElement),
 ])
+
+console.log(Object.keys({a:undefined,b:1}))

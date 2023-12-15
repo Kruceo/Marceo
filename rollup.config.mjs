@@ -1,17 +1,22 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
+// rollup.config.js
+import dts from 'rollup-plugin-dts';
 
-export default {
-  input: 'index.mjs',
-  output: [
-    {
-      file: 'dist/index.cjs.js',
-      format: 'cjs',
+export default [
+  // Config for bundling your JavaScript code
+  {
+    input: 'index.mjs',
+    output: {
+      file: 'dist/bundle.js',
+      format: 'esm',
     },
-    {
-      file: 'dist/index.mjs',
-      format: 'es',
+  },
+  // Config for generating TypeScript declaration file
+  {
+    input: 'index.mjs',
+    output: {
+      file: 'dist/index.d.ts',
+      format: 'esm',
     },
-  ],
-  plugins: [resolve(), commonjs()],
-};
+    plugins: [dts()],
+  },
+];
