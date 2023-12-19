@@ -6,22 +6,22 @@ export default [
   {
     input: 'index.mjs',
     output: {
-      file: 'dist/bundle.js',
+      file: 'dist/bundle.mjs.js',
       format: 'esm',
     },
   },
   {
     input: 'index.mjs',
     output: {
-      file: 'dist/bundle.js',
-      format: 'esm',
+      file: 'dist/bundle.cjs.js',
+      format: 'cjs',
     },
   },
   // Config for generating TypeScript declaration file
   {
     input: 'index.mjs',
     output: {
-      file: 'dist/index.d.ts',
+      file: 'dist/bundle.d.ts',
       format: 'esm',
     },
     plugins: [dts()],

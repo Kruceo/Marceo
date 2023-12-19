@@ -11,7 +11,7 @@ export default class Match {
         return `${this.start}${this.content}${this.end}`
     }
     /**
-     * 
+     * Gets a collection of matchs, normalized with start, content and end.
      * @param {RegExp} initRegExp 
      * @param {RegExp} contentRegExp 
      * @param {RegExp} endRegExp 

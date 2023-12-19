@@ -2,7 +2,7 @@ import Match from "./Match.mjs"
 
 export default class Plugin {
     /**
-     * 
+     * Add's a new normalized function for the software;
      * @param {RegExp} start 
      * @param {RegExp} content 
      * @param {RegExp} end 
@@ -18,7 +18,11 @@ export default class Plugin {
         this.htmlHandle = htmlHandler
         this.symbol = '@'
     }
-
+    /**
+     * Match the text and sinalize all to after replace then.
+     * @param {string} text 
+     * @returns 
+     */
     identifyText(text) {
         let newText = text
         let matches = Match.getFromText(this.start, this.content, this.end, text)
@@ -30,10 +34,15 @@ export default class Plugin {
         this.matches = matches
         return newText
     }
+    /**
+     * Replace pre-sinalized text with the plugin handler.
+     * @param {string} text 
+     * @returns {string}
+     */
     replaceSymbols(text) {
         let newText = text
         this.matches.forEach(each => {
-            const regex = new RegExp(`${each.id}.+${each.id}`,'s')
+            const regex = new RegExp(`${each.id}.*${each.id}`,'s')
             const match = newText.match(regex)
             console.log(regex,match)
             if(!match)return console.error("Errored");

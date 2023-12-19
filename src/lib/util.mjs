@@ -1,7 +1,9 @@
 /**
- * 
+ * Removes lookahead regular expressions.
  * @param {RegExp} regExp 
- * @param {boolean} includeStrings 
+ * @param {boolean} includeContent 
+ * @example removeLookahead(/(?<=ex)am(?=ple)/) // => /example/
+ * removeLookahead(/(?<=ex)am(?=ple)/,true) // => /am/
  */
 export function removeLookahead(regExp,includeContent){
     let source = regExp.source
@@ -17,9 +19,8 @@ export function removeLookahead(regExp,includeContent){
     return new RegExp(source)
 }
 
-
 export function textify(inputString) {
-    return inputString.split('').map(function(char) {
-      return '&#' + char.charCodeAt(0) + ';';
-    }).join('');
+    return inputString.split('').reduce((acum,next)=> {
+      return acum + '&#' + next.charCodeAt(0) + ';'
+    },'');
   }

@@ -2,6 +2,7 @@
 
 import Match from "./src/lib/Match.mjs"
 import Plugin from "./src/lib/Plugin.mjs"
+import { textify } from "./src/lib/util.mjs"
 import { anchor } from "./src/plugins/anchor.mjs"
 import { bold } from "./src/plugins/bold.mjs"
 import { breakline } from "./src/plugins/breakline.mjs"
@@ -49,18 +50,16 @@ export function parse(string) {
 
     ]
 
-    collections.forEach(each => {
-        raw = each.identifyText(raw)
+    collections.forEach(plugin => {
+        raw = plugin.identifyText(raw)
     })
 
-    collections.forEach(each => {
-        raw = each.replaceSymbols(raw)
+    collections.forEach(plugin => {
+        raw = plugin.replaceSymbols(raw)
     })
 
-    // raw = raw.replace(/@end-.+?@/g,'</span>')
-    // raw = raw.replace(/@.+?@/g,`<span style="color:rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255});">`)
-
+    raw = raw.replaceAll("\n","_")
+    // raw = textify(raw)
     // raw = raw.replaceAll("\n","$")
-    console.log(raw + '----')
     return "<div class=\"markdown background\">\n" + raw.replaceAll(NEWLINE, '\n') + "\n</div>"
 }
