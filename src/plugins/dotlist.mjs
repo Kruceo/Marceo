@@ -1,18 +1,8 @@
-import Plugin from "../lib/Plugin.mjs"
-import Regex from "../lib/Regex.mjs"
+import Plugin from "../lib/Plugin.mjs";
 
-function dotListElement(first, last, content) {
-    const space = parseInt(first[0].slice(first[0].indexOf(' '), first[0].lastIndexOf(' ')).length / 3)
-    return `
-<div class="markdown list-item level${space}"> \
-<span style="white-space:pre-wrap">${"".padEnd(space * 10, ' ')}</span> \
-<span class="markdown list-dot level${space}"></span>${content} \
-</div> \
-${last[0]}`
-
+function dotlistElement(start,content,last){
+    const level = Math.floor(start.length/3)
+    return `<p class="markdown list-dot level${level}">${content}</p>`
 }
 
-export const dotList = new Plugin([
-    new Regex("(\n\\s*?\\-)[^\\-]", "[^\\*]*?", `(?=\n)`, dotListElement),
-    new Regex('\n\\* ', "[^\\*]*?", `(?=\n)`, dotListElement),
-])
+export const dotlist = new Plugin(/(?<=\n)\s*- /, /.+?/, /(?=\n)/, 'dotlist',dotlistElement )

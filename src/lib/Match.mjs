@@ -19,7 +19,7 @@ export default class Match {
      */
     static getFromText(initRegExp, contentRegExp, endRegExp,text) {
 
-        const fullR = new RegExp( `(${initRegExp.source})(${contentRegExp.source})(${endRegExp.source})`, 'g')
+        const fullR = new RegExp( `(${initRegExp.source})(${contentRegExp.source})(${endRegExp.source})`, `g${contentRegExp.flags}${initRegExp.flags}${endRegExp.flags}`)
         const startR = new RegExp(`^(${initRegExp.source})`)
         const endR = new RegExp(`${endRegExp.source}$`)
 

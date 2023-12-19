@@ -1,68 +1,39 @@
 import Plugin from "../lib/Plugin.mjs"
-import Regex from "../lib/Regex.mjs"
 
-export function tableElement(first, last, content) {
-
-
-    let NEWLINE = first[0].replaceAll('|', '')
-    let padContent = content.replace(new RegExp(`(?!\\|)${NEWLINE}(?!\\|)`, 'g'), `|${NEWLINE}|`)
-    console.log("NEWLINE:", NEWLINE)
-    const split = padContent.split('|')
-    console.log(padContent)
-    let rowIndex = 0
-    let rows = []
-    let isHeader = true
-    split.forEach(element => {
-        if (element == '') return;
-        if (element == NEWLINE) {
-            rowIndex++
-            return null;
-        }
-
-        if (/^(\s)*?\-(\-)+\-(\s)*?$/.test(element)) {
-            console.log('|' + element + '|', true)
-            isHeader = false
-            return null
-        }
-
-        if (!rows[rowIndex]) rows[rowIndex] = []
-        rows[rowIndex].push(
-            {
-                content: element,
-                isHeader,
-            })
-    });
-
-
-    const biggerRowLength = [...rows].sort((a, b) => b.length - a.length)[0].length
-    let result = ''
-    let error = false
-    rows.forEach((row, rowIndex) => {
-        let rowCelWidth = biggerRowLength / row.length
-        if (("" + rowCelWidth).includes('.')) error = true
-        row.forEach((col, colIndex) => {
-            let isLeft = (colIndex == 0)
-            let isRight = (colIndex == rows[rowIndex].length - 1)
-            let isBottom = (rowIndex == rows.length - 1)
-            let isTop = (rowIndex == 0)
-
-            result += `
-            <div class="markdonw cel ${isLeft ? "left" : ''} ${isRight ? "right" : ''} ${isBottom ? 'bottom' : ''} ${isTop ? 'top' : ''} ${col.isHeader ? 'header' : ''}" \
-            style="grid-column:span ${rowCelWidth}"\>${col.content}</div>
-            `
-        })
+export function tableElement(first, content, last) {
+    let total = first + content + last
+    let rows = total.split('\n').map(each=>{
+        return each.split('|').filter(each=>each!="")
     })
-    if (error) return first[0] + content + last[0]
-    return `
-<div class="markdown table" style="display:grid; grid-template-columns:repeat(${biggerRowLength},1fr)"> \
-${result} \
-</div>
-`
+    let isHeader = true
+    let columnsCount = rows.sort((a,b)=>b.length-a.length)[0].length
+
+    rows = rows.map((row,row_index)=>{
+        return row.map((item,item_index)=>{
+            if(/^-[-]+-$/.test(item))return isHeader=false
+            let attributes = []
+            if(item_index == 0)attributes.push("left")
+            if(item_index == row.length-1)attributes.push("right")
+            if(row_index == 0)attributes.push("top")
+            if(row_index == rows.length-1)attributes.push("bottom")
+            if(!isHeader && Math.round(row_index /2) != row_index/2)attributes.push("pair")
+            if(isHeader)attributes.push('header')
+            return {value:item,attributes}
+        })
+        
+    })
+
+    let cellsHTML = ''
+
+    rows.forEach(row=>{
+        row.forEach(item=>{
+            if(!item)return;
+            cellsHTML += `<div class="markdown cel ${item.attributes.toString().replaceAll(","," ")}">${item.value}</div>`
+        })
+      
+    })
+
+    return `<div class="markdown table" style="display:grid;grid-template-columns:repeat(${columnsCount},1fr)">${cellsHTML}</div>`
+
 }
-
-export const table = new Plugin([
-    new Regex("\n(?!\\|)", "[^#\n]+?\\|[^\n]+", "(?=\n)", (f, l, c) => { return "\n|" + c + "|" }),  //prepare to accept non-piped tables
-    new Regex(`(?:\n)\\|`, `.*?`, `\\|\n(?!\\|)`, tableElement),
-])
-
-console.log(Object.keys({a:undefined,b:1}))
+export const table = new Plugin(/(?<!\|)\n\|/, /(.+\|\n\|.+)+?/, /\|\n(?!\|)/, 'table', tableElement)

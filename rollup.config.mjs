@@ -10,6 +10,13 @@ export default [
       format: 'esm',
     },
   },
+  {
+    input: 'index.mjs',
+    output: {
+      file: 'dist/bundle.js',
+      format: 'esm',
+    },
+  },
   // Config for generating TypeScript declaration file
   {
     input: 'index.mjs',

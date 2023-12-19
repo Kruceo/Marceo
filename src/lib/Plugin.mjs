@@ -9,33 +9,37 @@ export default class Plugin {
      * @param {string} symbol 
      * @param {(init:string,content:string,end:string)=>string} htmlHandler 
      */
-    constructor(start, content, end, symbol, htmlHandler) {
+    constructor(start, content, end, name, htmlHandler) {
         this.matches = []
         this.start = start
         this.content = content
         this.end = end
-        this.symbol = symbol
+        this.name = name
         this.htmlHandle = htmlHandler
-        this.endSymbol = `@${symbol}end@`
-        this.startSymbol = `@${symbol};@`
+        this.symbol = '@'
     }
 
     identifyText(text) {
         let newText = text
-        let matches =  Match.getFromText(this.start, this.content, this.end, text).map(each=>{each.code=Math.random()})
-        matches.forEach((each,index) => {
-            let replaceable = `${this.startSymbol}${each.content}${this.endSymbol}`
-            newText = newText.replace(each.complete, replaceable)
+        let matches = Match.getFromText(this.start, this.content, this.end, text)
+        matches.map((each,index) => {
+            const id = `${this.symbol}${this.name}-${index}${this.symbol}`
+            each.id = id
+            newText = newText.replace(each.complete, `${id}${each.content}${id}`)
         })
+        this.matches = matches
         return newText
     }
     replaceSymbols(text) {
         let newText = text
-        const newMatch = Match.getFromText(new RegExp(this.startSymbol), /.+?/, new RegExp(this.endSymbol), newText)
-        if (!newMatch) return text
-        newMatch.forEach(each => {
-            const htmlElement = this.htmlHandle(each.start, each.content, each.end)
-            newText = newText.replace(each.complete, htmlElement)
+        this.matches.forEach(each => {
+            const regex = new RegExp(`${each.id}.+${each.id}`,'s')
+            const match = newText.match(regex)
+            console.log(regex,match)
+            if(!match)return console.error("Errored");
+            
+            const htmlElement = this.htmlHandle(each.start, match[0].replaceAll(each.id,''), each.end)
+            newText = newText.replace(regex , htmlElement)
         })
         return newText
 

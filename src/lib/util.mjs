@@ -16,3 +16,10 @@ export function removeLookahead(regExp,includeContent){
     })
     return new RegExp(source)
 }
+
+
+export function textify(inputString) {
+    return inputString.split('').map(function(char) {
+      return '&#' + char.charCodeAt(0) + ';';
+    }).join('');
+  }

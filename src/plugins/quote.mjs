@@ -1,10 +1,7 @@
 import Plugin from "../lib/Plugin.mjs"
-import Regex from "../lib/Regex.mjs"
 
-function quoteElement(first, last, content) {
+function quoteElement(first, content, last) {
     return `<div class="markdown quote">${content}</div>`
 }
 
-export const quote = new Plugin([
-    new Regex('\n(>)', ".*?", "\n", quoteElement),
-])
+export const quote = new Plugin(/>/,/.+?/,/\n/,"quote",quoteElement)

@@ -1,10 +1,3 @@
 import Plugin from "../lib/Plugin.mjs"
-import Regex from "../lib/Regex.mjs"
 
-function lineElement(first, last, content) {
-    return `<div class="markdown line"></div>`
-}
-
-export const line = new Plugin([
-    new Regex(`-`, "(-)*", `--`, lineElement),
-])
+export const line =  new Plugin(/\n_/, /_/, /_\n/, 'line    ', (start, content, end) => `<div class="markdown line"/>`)

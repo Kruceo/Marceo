@@ -111,6 +111,9 @@
     color: #d1d3dc;
     font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
+.markdown *{
+    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
 
 /* ---------------- HEADERS => all lines that starts with # ------------------ */
 .markdown .header1 {
@@ -205,24 +208,36 @@
     content: ".";
 }
 
-
-/* ---------------- LIST => applied to all list syntax ------------------ */
-.markdown.list-item .pad {
-    font-size: 10px;
-}
-
 /* ---------------- LIST => * or - example text ------------------ */
 .markdown.list-dot {
-    color: #d1d3dc88;
+    color: #d1d3dc;
+    
     font-size: 20px;
 }
 
 .markdown.list-dot::before {
-    content: "• ";
+    content: "\2022 \ ";
+    color: #d1d3dc88;
 }
 
 .markdown.list-dot.level1::before {
-    content: "◦ ";
+    content: "\25E6 \ ";
+    margin-left: 20px;
+}
+
+.markdown.list-dot.level2::before {
+    content: "\25E6 \ ";
+    margin-left: 40px;
+}
+
+.markdown.list-dot.level3::before {
+    content: "\25E6 \ ";
+    margin-left: 60px;
+}
+
+.markdown.list-dot.level4::before {
+    content: "\25E6 \ ";
+    margin-left: 80px;
 }
 
 
@@ -248,7 +263,7 @@
 }
 
 .markdown.task::before {
-    content: "⬜";
+    content: "\2B9C \2B9C";
     white-space: pre-wrap;
     color: transparent;
 }
@@ -264,7 +279,7 @@
 }
 
 .markdown.task.checked>.inner::before {
-    content: "✓";
+    content: "\2713";
 }
 
 
@@ -334,6 +349,7 @@
 
 /* ---------------- INLINE CODE => |example1|example2| ------------------ */
 .markdown.table {
+    margin: 0;
     display: flex;
     width: fit-content;
     border-radius: 6px;
@@ -357,6 +373,11 @@
     background-color: rgba(236, 236, 241, .2);
     color: white;
     font-weight: bold;
+}
+
+.markdown.table .cel.pair {
+    background-color: rgba(236, 236, 241, .05);
+    color: white;
 }
 
 .markdown.table .cel.left {
