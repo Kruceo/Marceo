@@ -1,39 +1,41 @@
 {
-  "name": "markup",
-  "version": "0.3.0",
-  "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
-  "main": "index.mjs",
-  "exports": {
-    "import": "./dist/bundle.mjs.js",
-    "require": "./dist/bundle.cjs.js",
-    "types":"./dist/bundle.d.ts"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kruceo/Markup.git"
-  },
-  "keywords": [
-    "markdown",
-    "html",
-    "parser"
-  ],
-  "author": "kruceo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kruceo/Markup/issues"
-  },
-  "homepage": "https://github.com/Kruceo/Markup#readme",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "rollup": "^4.9.0",
-    "rollup-plugin-dts": "^6.1.0"
-  },
-  "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.5"
-  }
+    "name": "marceo",
+    "version": "0.6.0",
+    "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
+    "exports": {
+        "import":"./dist/index.mjs",
+        "require":"./dist/index.js",
+        "types":"./dist/index.d.ts"
+    },
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "rollup -c"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kruceo/Markup.git"
+    },
+    "keywords": [
+        "markdown",
+        "html",
+        "parser"
+    ],
+    "author": "kruceo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Kruceo/Markup/issues"
+    },
+    "homepage": "https://github.com/Kruceo/Markup#readme",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@types/node": "^20.10.5",
+        "rollup": "^4.9.1",
+        "rollup-plugin-dts": "^6.1.0",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "tslib": "^2.6.2",
+        "typescript": "^5.3.3"
+    }
 }

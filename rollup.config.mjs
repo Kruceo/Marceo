@@ -1,29 +1,22 @@
 // rollup.config.js
-import dts from 'rollup-plugin-dts';
+import { dts } from 'rollup-plugin-dts';
+import typescript from 'rollup-plugin-typescript2';
 
-export default [
-  // Config for bundling your JavaScript code
-  {
-    input: 'index.mjs',
-    output: {
-      file: 'dist/bundle.mjs.js',
-      format: 'esm',
-    },
-  },
-  {
-    input: 'index.mjs',
-    output: {
-      file: 'dist/bundle.cjs.js',
+export default {
+  input: 'src/index.ts',
+  output: [
+    {
+      file: 'dist/index.js',
       format: 'cjs',
     },
-  },
-  // Config for generating TypeScript declaration file
-  {
-    input: 'index.mjs',
-    output: {
-      file: 'dist/bundle.d.ts',
+    {
+      file: 'dist/index.mjs',
       format: 'esm',
-    },
-    plugins: [dts()],
-  },
-];
+    }
+  ],
+  plugins: [
+    typescript({
+      tsconfig: 'tsconfig.json', // Your tsconfig.json path
+    }),
+  ],
+};
