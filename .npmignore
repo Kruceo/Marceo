@@ -1,3 +1,6 @@
 src
 rollup.config.mjs
 teste.html
+rollup.config.*
+.github
+tsconfig.json

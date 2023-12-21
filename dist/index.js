@@ -125,7 +125,7 @@ function anchorElement(start, content) {
 const anchor = new Plugin(/(?<!\!)(\[.+?\])\(/, /.+?/, /\)/, 'anchor', anchorElement);
 
 function boldElement(start, content) {
-    return `<span class="markdown bold">${content}</span>`;
+    return `<strong class="markdown bold">${content}</strong>`;
 }
 const bold = new Plugin(/\*\*/, /.+?/, /\*\*/, 'bold', boldElement);
 
@@ -157,8 +157,8 @@ function inlineCodeElement(first, content, last) {
 }
 const inlineCode = new Plugin(/`/, /.+?/, /`/, "inlinecode", inlineCodeElement);
 
-const italic = new Plugin(/\*/, /.+?/, /\*/, 'italic  ', (start, content, end) => `<span class="markdown italic">${content}</span>`);
-const unItalic = new Plugin(/_/, /.+?/, /_/, 'unitalic', (start, content, end) => `<span class="markdown italic">${content}</span>`);
+const italic = new Plugin(/\*/, /.+?/, /\*/, 'italic  ', (start, content, end) => `<i class="markdown italic">${content}</i>`);
+const unItalic = new Plugin(/_/, /.+?/, /_/, 'unitalic', (start, content, end) => `<i class="markdown italic">${content}</i>`);
 
 const line = new Plugin(/(?<=\n)_/, /(_)+/, /_(?=\n)/, 'line    ', () => `<div class="markdown line"></div>`);
 
@@ -180,13 +180,13 @@ function taskElement(first, content, last) {
 }
 const task = new Plugin(/\[/, /(x| )/, /\]/, 'task', taskElement);
 
-function tableElement(first, content, last) {
+const markdownTable = new Plugin(/(?<!\|)\n\|/, /(.+\|\n\|.+)+?/, /\|\n(?!\|)/, 'table', differentTable);
+function differentTable(first, content, last) {
     let total = first + content + last;
     let rawRows = total.split('\n').map(each => {
         return each.split('|').filter(each => each != "");
     });
     let isHeader = true;
-    let columnsCount = rawRows.sort((a, b) => b.length - a.length)[0].length;
     let rows = rawRows.map((row, row_index) => {
         return row.map((item, item_index) => {
             if (/^-[-]+-$/.test(item))
@@ -207,49 +207,59 @@ function tableElement(first, content, last) {
             return { value: item, attributes };
         });
     });
-    let cellsHTML = '';
+    let head = "";
+    let body = "";
     rows.forEach(row => {
-        row.forEach(item => {
-            if (!item)
+        let isHeader = true;
+        let rowContent = "";
+        row.forEach(each => {
+            if (!each)
                 return;
-            cellsHTML += `<div class="markdown cel ${item.attributes.toString().replaceAll(",", " ")}">${item.value}</div>`;
+            isHeader = each.attributes.includes("header");
+            rowContent += `<${isHeader ? "th" : "td"} class="markdown cel ${each.attributes.toString().replaceAll(",", " ")}">${each.value}</${isHeader ? "th" : "td"}>`;
         });
+        if (isHeader)
+            head += `<tr class="markdown row header">${rowContent}</tr>`;
+        else
+            body += `<tr class="markdown row">${rowContent}</tr>`;
     });
-    return `<div class="markdown table" style="display:grid;grid-template-columns:repeat(${columnsCount},1fr)">${cellsHTML}</div>`;
+    return `<table class="markdown table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
-const markdownTable = new Plugin(/(?<!\|)\n\|/, /(.+\|\n\|.+)+?/, /\|\n(?!\|)/, 'table', tableElement);
+console.log(differentTable('\n|', "\n1|2|\n|---|---|\n|3|4\n", "|\n"));
 
+var collections = [
+    header5,
+    header4,
+    header3,
+    header2,
+    header1,
+    dotlist,
+    bold,
+    italic,
+    line,
+    unItalic,
+    numlist,
+    markdownTable,
+    anchor,
+    image,
+    codeBlock,
+    quote,
+    inlineCode,
+    task,
+    scratched,
+];
 function parse(text) {
     let raw = ('\n' + text + '\n');
-    const collections = [
-        header5,
-        header4,
-        header3,
-        header2,
-        header1,
-        dotlist,
-        bold,
-        italic,
-        line,
-        unItalic,
-        numlist,
-        markdownTable,
-        anchor,
-        image,
-        codeBlock,
-        quote,
-        inlineCode,
-        task,
-        scratched,
-        // new Plugin(/\*\*\*/, /.+?/, /\*\*\*/, 'bolditalic', (start, content, end) => `<span class="markdown bold italic">${content}</span>`,{hideContent:true}),
-    ].sort((a, b) => (a.options.hideContent ? 0 : 1) - (b.options.hideContent ? 0 : 1));
-    collections.forEach((plugin, index) => {
+    const ordenedCollections = collections.sort((a, b) => (a.options.hideContent ? 0 : 1) - (b.options.hideContent ? 0 : 1));
+    ordenedCollections.forEach(plugin => {
         raw = plugin.identifyText(raw);
     });
-    collections.forEach(plugin => {
+    ordenedCollections.forEach(plugin => {
         raw = plugin.replaceSymbols(raw);
     });
     return `<div class=\"markdown background\">${raw}</div>`;
 }
 
+exports.Plugin = Plugin;
+exports.collections = collections;
 exports.parse = parse;
