@@ -1,3 +1,5 @@
+import hljs from 'highlight.js';
+
 /**
  * Removes lookahead regular expressions.
  * @example removeLookahead(/(?<=ex)am(?=ple)/) // => /example/
@@ -127,8 +129,13 @@ function boldElement(start, content) {
 }
 const bold = new Plugin(/\*\*/, /.+?/, /\*\*/, 'bold', boldElement);
 
+// import javascript from 'highlight.js/lib/languages/javascript';
 function codeBlockElement(start, content, end) {
-    return `<div class="markdown code-block"><div class="language">${start.slice(3)}</div><div class="code">${content}</div></div>`;
+    let lang = start.slice(3);
+    if (!hljs.getLanguage(lang))
+        lang = "bash";
+    const cnt = content.replace(/^[\n]+|[\n]+$/g, '');
+    return `<div class="markdown code-block"><div class="language">${lang}</div><code class="markdown code">${hljs.highlight(cnt, { language: lang }).value}</code><div>`;
 }
 const codeBlock = new Plugin(/```\w+/, /.+?/s, /```/, 'codeblock', codeBlockElement, { hideContent: true });
 
@@ -223,7 +230,6 @@ function differentTable(first, content, last) {
     });
     return `<table class="markdown table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
-console.log(differentTable('\n|', "\n1|2|\n|---|---|\n|3|4\n", "|\n"));
 
 var collections = [
     header5,

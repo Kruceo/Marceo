@@ -301,10 +301,14 @@
 }
 
 .markdown.code-block .code {
-    /* white-space: initial!important; */
+    display: block;
+    white-space: pre;
     width: 100%;
+    *{
+        margin: 0;
+    }
     padding: 7px;
-    background-color: #000;
+    background-color: #000000;
 }
 
 

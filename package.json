@@ -1,6 +1,6 @@
 {
   "name": "marceo",
-  "version": "0.7.0-2",
+  "version": "0.7.1-2",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "exports": {
     "import": "./dist/index.mjs",
@@ -37,5 +37,9 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/highlight.js": "^10.1.0",
+    "highlight.js": "^11.9.0"
   }
 }

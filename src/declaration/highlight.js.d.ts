@@ -1,0 +1,1 @@
+/// <reference types="highlight.js/types/index.d.ts" />

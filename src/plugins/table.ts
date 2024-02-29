@@ -77,5 +77,3 @@ function differentTable(first: string, content: string, last: string) {
 
     return `<table class="markdown table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`
 }
-
-console.log(differentTable('\n|', "\n1|2|\n|---|---|\n|3|4\n", "|\n"))
