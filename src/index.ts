@@ -13,8 +13,12 @@ import { quote } from "./plugins/quote"
 import { scratched } from "./plugins/scratched"
 import { task } from "./plugins/task"
 import { markdownTable } from "./plugins/table"
+import { closedHtml, html } from "./plugins/html"
 
 var collections:Plugin[] = [
+    codeBlock,
+    closedHtml,
+    html,
     header5,
     header4,
     header3,
@@ -29,7 +33,6 @@ var collections:Plugin[] = [
     markdownTable,
     anchor,
     image,
-    codeBlock,
     quote,
     inlineCode,
     task,

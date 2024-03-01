@@ -17,7 +17,11 @@ export default class Match {
      * Gets a collection of matchs, normalized with start, content and end.
      */
     static getFromText(initRegExp: RegExp, contentRegExp: RegExp, endRegExp: RegExp, text: string) {
-        const fullR = new RegExp(`(${initRegExp.source})(${contentRegExp.source})(${endRegExp.source})`, `g${contentRegExp.flags ?? ""}${initRegExp.flags ?? ""}${endRegExp.flags ?? ""}`)
+        let flags = "g"
+        const allflags = [...initRegExp.flags.split(""), ...contentRegExp.flags.split(""), ...endRegExp.flags.split("")]
+        allflags.forEach(each => { if (!flags.includes(each)) flags += each })
+        
+        const fullR = new RegExp(`(${initRegExp.source})(${contentRegExp.source})(${endRegExp.source})`, flags)
         const startR = new RegExp(`^(${initRegExp.source})`)
         const endR = new RegExp(`${endRegExp.source}$`)
 

@@ -8,9 +8,15 @@ function codeBlockElement(start: string, content: string, end: string) {
 
     const cnt = content.replace(/^[\n]+|[\n]+$/g,'')
 
-    return `<div class="markdown code-block"><div class="language">${lang}</div><code class="markdown code">${hljs.highlight(cnt, { language: lang }).value}</code><div>`
+    // return `<div class="markdown code-block"><div class="language">${lang}</div><code class="code">${content.replace(/^(\n)+|(\n)+$/g, "")}</code></div>`
 
-    return `<div class="markdown code-block"><div class="language">${lang}</div><code class="code">${content.replace(/^(\n)+|(\n)+$/g, "")}</code></div>`
+        return `\
+<div class="markdown code-block">\
+<div class="markdown language">${lang}</div>\
+<code class="markdown code">\
+${hljs.highlight(cnt, { language: lang }).value}\
+</code>\
+</div>`
 }
 
 export const codeBlock = new Plugin(/```\w+/, /.+?/s, /```/, 'codeblock', codeBlockElement, { hideContent: true })
