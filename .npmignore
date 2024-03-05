@@ -4,3 +4,4 @@ teste.html
 rollup.config.*
 .github
 tsconfig.json
+tests
