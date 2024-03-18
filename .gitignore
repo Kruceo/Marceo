@@ -2,3 +2,4 @@ node_modules
 tests/*.html
 _*
 dist
+test.*

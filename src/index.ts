@@ -45,7 +45,6 @@ function parse(text:string) {
     let raw = ('\n' + text + '\n')
 
     const ordenedCollections:Plugin[] = collections.sort((a,b)=>(a.options.hideContent?0:1) - (b.options.hideContent?0:1))
-
     ordenedCollections.forEach(plugin => {
         raw = plugin.identifyText(raw)
     })

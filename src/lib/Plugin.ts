@@ -62,7 +62,7 @@ ${id}`)
         this.matches.forEach(each => {
             const regex = new RegExp(`${each.id}.*${each.id}`, 's')
             const match = newText.match(regex)
-            if (!match) return console.error("Errored");
+            if (!match) return console.error("Plugin ID not matched.");
             
             const content = this.options.hideContent ? each.content : match[0].replaceAll(each.id, '')
             const htmlElement = this.htmlHandle(each.start,content,each.end)
