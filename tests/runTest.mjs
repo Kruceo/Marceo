@@ -19,3 +19,4 @@ if(result.toString() != compare ){
     throw new Error("The comparation don't match.")
 }
 
+console.log("[PASS]")

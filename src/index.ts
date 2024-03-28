@@ -18,7 +18,6 @@ import { closedHtml, html } from "./plugins/html"
 var collections:Plugin[] = [
     codeBlock,
     closedHtml,
-    html,
     header5,
     header4,
     header3,
@@ -32,7 +31,6 @@ var collections:Plugin[] = [
     unItalic,
     numlist,
     markdownTable,
-   
     image,
     quote,
     inlineCode,
