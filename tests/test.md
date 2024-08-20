@@ -14,31 +14,39 @@
 
 [Link to Google](https://www.google.com)
 
+<br/>
+
 ![Example Image](https://via.placeholder.com/150)
 
 - Unordered List
-  - Item 1
-  - Item 2
-    - Subitem 1
+    - Item 1
+    - Item 2
+        - Subitem 1
 
 1. Ordered List
-   1. Item 1
-   2. Item 2
-      1. Subitem 1
+    1. Item 1
+    2. Item 2
+        1. Subitem 1
+
+
+1. Ordered List
+    - Item 1
+    - Item 2
+        - Subitem 1
 
 > Blockquote
+
 
 | Column 1 | Column 2 | Column 3 |
 |--------|--------|--------|
 | Cell 1   | Cell 2   | Cell 3   |
 
-| Column 1 | Column 2 | Column 3 |
-| -------- | -------- | -------- |
-| Cell 1   | Cell 2   | Cell 3   |
 
----
+----
+
 
 Horizontal Rule
+
 
 ```python
 # Python Code Block

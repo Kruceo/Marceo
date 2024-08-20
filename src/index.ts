@@ -8,7 +8,6 @@ import { image } from "./plugins/image"
 import { inlineCode } from "./plugins/inlineCode"
 import { italic, unItalic } from "./plugins/italic"
 import { line } from "./plugins/line"
-import { numlist } from "./plugins/numlist"
 import { quote } from "./plugins/quote"
 import { scratched } from "./plugins/scratched"
 import { task } from "./plugins/task"
@@ -29,7 +28,6 @@ var collections:Plugin[] = [
     italic,
     line,
     unItalic,
-    numlist,
     markdownTable,
     image,
     quote,
@@ -51,7 +49,7 @@ function parse(text:string) {
         raw = plugin.replaceSymbols(raw)
     })
 
-    return `<div class=\"markdown background\">${raw}</div>`
+    return raw
 }
 
 export {parse,Plugin,collections}

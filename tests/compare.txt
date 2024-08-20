@@ -1,4 +1,4 @@
-<div class="markdown background">
+
 <h1 class="markdown header1">Heading 1</h1>
 
 
@@ -18,48 +18,77 @@
 
 <a class="markdown anchor" href="https://www.google.com">Link to Google</a>
 
+<br />
+
 <img src="https://via.placeholder.com/150" title="Example Image"></img>
+<ul>
+<li>Unordered List</li>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<ul>
+<li>Subitem 1</ul></ul></li></ul>
 
-<p class="markdown list-dot level0">Unordered List</p>
-<p class="markdown list-dot level1">Item 1</p>
-<p class="markdown list-dot level1">Item 2</p>
-<p class="markdown list-dot level1">Subitem 1</p>
 
-<p class="markdown numlist"> Ordered List</p>
-   1. Item 1
-   2. Item 2
-      1. Subitem 1
+
+
+<ol>
+<li> Ordered List</li>
+    1. Item 1
+    2. Item 2
+        1. Subitem 1</ol>
+
+
+<ol>
+<li> Ordered List</li>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<ul>
+<li>Subitem 1</ol></ul></li></ul>
+
+
+
 
 <blockquote class="markdown quote"> Blockquote</blockquote>
 
+
 <table class="markdown table"><thead><tr><tr class="markdown row header"><th class="markdown cel left top header"> Column 1 </th><th class="markdown cel top header"> Column 2 </th><th class="markdown cel right top header"> Column 3 </th></tr><tr class="markdown row header"></tr></tr></thead><tbody><tr class="markdown row"><td class="markdown cel left bottom"> Cell 1   </td><td class="markdown cel bottom"> Cell 2   </td><td class="markdown cel right bottom"> Cell 3   </td></tr></tbody></table>
 
-<table class="markdown table"><thead><tr><tr class="markdown row header"><th class="markdown cel left top header"> Column 1 </th><th class="markdown cel top header"> Column 2 </th><th class="markdown cel right top header"> Column 3 </th></tr><tr class="markdown row header"><th class="markdown cel left header"> -------- </th><th class="markdown cel header"> -------- </th><th class="markdown cel right header"> -------- </th></tr><tr class="markdown row header"><th class="markdown cel left bottom header"> Cell 1   </th><th class="markdown cel bottom header"> Cell 2   </th><th class="markdown cel right bottom header"> Cell 3   </th></tr></tr></thead><tbody></tbody></table>
 
----
+----
+
 
 Horizontal Rule
 
-<div class="markdown code-block"><div class="markdown language">python</div><code class="markdown code"><span class="hljs-comment"># Python Code Block</span>
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">hello_world</span>():
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, world!&quot;</span>)
-hello_world()</code></div>
 
-<div class="markdown code-block"><div class="markdown language">html</div><code class="markdown code"><span class="hljs-comment">&lt;!-- HTML Code Block --&gt;</span>
-<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></div>
+<div class="markdown code-block"><div class="markdown language">python</div><code class="markdown code">
+#&nbsp;Python&nbsp;Code&nbsp;Block
+def&nbsp;hello_world():
+&nbsp;&nbsp;&nbsp;&nbsp;print(&quot;Hello,&nbsp;world!&quot;)
+hello_world()
 
-<p class="markdown list-dot level0"><span class="markdown task checked"><div id="markdown" class="inner"></div></span> Completed Task</p>
-<p class="markdown list-dot level0"><span class="markdown task "><div id="markdown" class="inner"></div></span> Incomplete Task</p>
+</code></div>
+
+<div class="markdown code-block"><div class="markdown language">html</div><code class="markdown code">
+&lt;!--&nbsp;HTML&nbsp;Code&nbsp;Block&nbsp;--&gt;
+&lt;!DOCTYPE&nbsp;html&gt;
+&lt;html&nbsp;lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;charset=&quot;UTF-8&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;name=&quot;viewport&quot;&nbsp;content=&quot;width=device-width,&nbsp;initial-scale=1.0&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,&nbsp;world!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></div>
+<ul>
+<li><span class="markdown task checked"><div id="markdown" class="inner"></div></span> Completed Task</li>
+<li><span class="markdown task "><div id="markdown" class="inner"></div></span> Incomplete Task</li></ul>
+
 
 Emoji 😀: :smiley:
 
@@ -77,4 +106,4 @@ Abbreviation: HTML (Hypertext Markup Language)
 
 End of Document
 
-</div>
+
