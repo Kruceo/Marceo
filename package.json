@@ -1,6 +1,6 @@
 {
   "name": "marceo",
-  "version": "0.7.7",
+  "version": "0.8.0",
   "description": "Converts Markdown to HTML, allowing you to create fully customized and structured HTML documents.",
   "exports": {
     "import": "./dist/index.mjs",

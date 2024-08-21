@@ -13,8 +13,9 @@ import { scratched } from "./plugins/scratched"
 import { task } from "./plugins/task"
 import { markdownTable } from "./plugins/table"
 import { closedHtml, html } from "./plugins/html"
+import Parser from "./lib/Parser"
 
-var collections:Plugin[] = [
+const defaultPlugins:Plugin[] = [
     codeBlock,
     closedHtml,
     header5,
@@ -36,20 +37,6 @@ var collections:Plugin[] = [
     scratched,
 ]
 
-function parse(text:string) {
+const defaultParser = new Parser(defaultPlugins) 
 
-    let raw = ('\n' + text + '\n')
-
-    const ordenedCollections:Plugin[] = collections.sort((a,b)=>(a.options.hideContent?0:1) - (b.options.hideContent?0:1))
-    ordenedCollections.forEach(plugin => {
-        raw = plugin.identifyText(raw)
-    })
-
-    ordenedCollections.forEach(plugin => {
-        raw = plugin.replaceSymbols(raw)
-    })
-
-    return raw
-}
-
-export {parse,Plugin,collections}
+export {Plugin,Parser,defaultPlugins,defaultParser}

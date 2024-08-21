@@ -10,7 +10,7 @@ try {
     console.log("bun is not installed, using nodejs")
 }
 
-fs.writeFileSync("./tests/test.mjs",'import {parse} from "../dist/index.mjs";import fs from "fs" ; console.log(parse(fs.readFileSync("./tests/test.md","utf8")));')
+fs.writeFileSync("./tests/test.mjs",'import {defaultParser} from "../dist/index.mjs";import fs from "fs" ; console.log(defaultParser.parse(fs.readFileSync("./tests/test.md","utf8")));')
 
 const runtime = isBunjs?"bun":"node --experimental-modules"
 const packageMan = isBunjs?"bun":"npm"
